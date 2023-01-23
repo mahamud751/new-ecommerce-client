@@ -4,12 +4,12 @@ import { AuthContext } from "../../contexts/AuthProvider";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  console.log("sss", user);
+
   return (
     <div>
       {/* preloader begin */}
       <div className="preloader">
-        <img src="assets/images/loader.gif" alt="Gif" />
+        <img src="/assets/images/loader.gif" alt="Gif" />
       </div>
       {/* preloader end */}
       {/*------------------------------- PRODUCT QUICK VIEW PANEL START -------------------------------*/}
