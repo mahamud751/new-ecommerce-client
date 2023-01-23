@@ -2,6 +2,8 @@ import React from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import Countdown from "./Countdown";
+
 const options = {
   margin: 30,
   responsiveClass: true,
@@ -44,7 +46,17 @@ const FlashSales = () => {
                 <div className="col-lg-8 col-md-8 countdown-col">
                   <div className="countdown-wrap d-flex">
                     <h3>Ending Soon...</h3>
-                    <div id="flashDealCountdown" className="countdown" />
+                    <div
+                      className="countdown"
+                      style={{
+                        fontSize: 28,
+                        color: "white",
+                        padding: "0px 20px",
+                        background: "black",
+                      }}
+                    >
+                      <Countdown />
+                    </div>
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-2 col-6">
