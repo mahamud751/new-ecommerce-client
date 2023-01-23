@@ -1,5 +1,35 @@
 import React from "react";
-
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+const options = {
+  margin: 30,
+  responsiveClass: true,
+  //   nav: true,
+  dots: true,
+  autoplay: true,
+  items: 4,
+  loop: true,
+  //   navText: ["Prev", "Next"],
+  smartSpeed: 1000,
+  responsive: {
+    0: {
+      items: 1,
+    },
+    400: {
+      items: 1,
+    },
+    600: {
+      items: 2,
+    },
+    700: {
+      items: 3,
+    },
+    1000: {
+      items: 4,
+    },
+  },
+};
 const FlashSales = () => {
   return (
     <div>
@@ -28,7 +58,7 @@ const FlashSales = () => {
             </div>
             <div className="panel-body">
               <div className="col-12">
-                <div className="related-product-slider owl-carousel">
+                <OwlCarousel className="owl-main  owl-theme" {...options}>
                   <div className="single-product-card">
                     <div className="part-img">
                       <a href="shop-details.html">
@@ -391,7 +421,7 @@ const FlashSales = () => {
                       <button className="add-to-cart-btn">Add to Cart</button>
                     </div>
                   </div>
-                </div>
+                </OwlCarousel>
               </div>
             </div>
           </div>

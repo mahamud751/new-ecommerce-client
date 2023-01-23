@@ -1,15 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Category = () => {
-  const { data: categories = [], refetch } = useQuery({
-    queryKey: ["categories"],
-    queryFn: async () => {
-      const res = await fetch("http://localhost:5000/api/category");
-      const data = await res.json();
-      return data;
-    },
-  });
+  // const { data: categories = [], refetch } = useQuery({
+  //   queryKey: ["categories"],
+  //   queryFn: async () => {
+  //     const res = await fetch("http://localhost:5000/api/category");
+  //     const data = await res.json();
+  //     return data;
+  //   },
+  // });
+
+  const [category, setCategory] = useState([]);
+  async function getUser() {
+    try {
+      const response = await axios.get("http://localhost:5000/api/category");
+      setCategory(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  getUser();
   return (
     <div>
       <div className="popular-categories">
@@ -31,20 +44,18 @@ const Category = () => {
             </div>
             <div className="panel-body">
               <div className="custom-row">
-                {categories.map((category) => (
+                {category.map((category) => (
                   <div className="custom-col" key={category._id}>
-                    <div className="category-card">
-                      <div className="part-img">
-                        <a href="shop.html">
+                    <Link to={`/category/${category._id}`}>
+                      <div className="category-card">
+                        <div className="part-img">
                           <img src={category.img} alt="Image" />
-                        </a>
+                        </div>
+                        <div className="part-txt">
+                          <h3>{category.name}</h3>
+                        </div>
                       </div>
-                      <div className="part-txt">
-                        <h3>
-                          <a href="shop.html">{category.name}</a>
-                        </h3>
-                      </div>
-                    </div>
+                    </Link>
                   </div>
                 ))}
               </div>

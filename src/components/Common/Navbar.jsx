@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Navbar = () => {
@@ -835,9 +835,9 @@ const Navbar = () => {
                       <nav id="revel-mobile-menu" className="revel-mobile-menu">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                           <li className="nav-item">
-                            <Link to={"/"}>
-                              <a className="nav-link">Home</a>
-                            </Link>
+                            <NavLink to="/" className="nav-link">
+                              Home
+                            </NavLink>
                           </li>
                           <li className="nav-item">
                             <a className="nav-link" href="about.html">
@@ -984,9 +984,8 @@ const Navbar = () => {
               </div>
               <div className="col-lg-2">
                 <div className="account-link">
-                  <Link to={"/signup"}>
-                    <a>Register</a>
-                  </Link>
+                  <NavLink to="/signup">Register</NavLink>
+
                   <span>/</span>
                   <a href="register.html">Sign in</a>
                 </div>
