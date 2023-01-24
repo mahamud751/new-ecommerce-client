@@ -1,25 +1,35 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { add_item } from "../../redux/actions/cartAction";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import { setCategory } from "../../redux/actions/categoryAction";
 
 const Category = () => {
+  const MySwal = withReactContent(Swal);
   let { id } = useParams();
-  const [category, setCategory] = useState([]);
-  const getCategory = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/api/category/${id}`
-      );
-      setCategory(response.data.products);
-    } catch (error) {
-      console.error(error);
-    }
+
+  const category = useSelector((state) => state.allCategory.category);
+  const dispatch = useDispatch();
+  const fetchProducts = async () => {
+    const response = await axios
+      .get(`http://localhost:5000/api/category/${id}`)
+      .catch((err) => {});
+    dispatch(setCategory(response.data.products));
   };
 
   useEffect(() => {
-    getCategory();
+    fetchProducts();
   }, []);
-  console.log(category);
+
+  //cart
+
+  const handleAddItem = (e) => {
+    dispatch(add_item(e));
+    MySwal.fire("Good job!", "successfully added", "success");
+  };
   return (
     <div>
       <div>
@@ -57,7 +67,7 @@ const Category = () => {
               <div className="col-xl-3 col-lg-4 sidebar-col">
                 <div className="shop-sidebar">
                   <div className="sidebar-box">
-                    <h3 className="sidebar-title">By Brands</h3>
+                    <h3 className="sidebar-title">By Category</h3>
                     <ul className="brand-filter" id="brandFilter">
                       <li>
                         <div className="form-check">
@@ -145,7 +155,7 @@ const Category = () => {
                       </li>
                     </ul>
                   </div>
-                  <div className="sidebar-box">
+                  {/* <div className="sidebar-box">
                     <h3 className="sidebar-title">By Price</h3>
                     <div className="price-filter-wrap">
                       <div className="input-wrap">
@@ -163,8 +173,8 @@ const Category = () => {
                         Filter now
                       </button>
                     </div>
-                  </div>
-                  <div className="sidebar-box">
+                  </div> */}
+                  {/* <div className="sidebar-box">
                     <h3 className="sidebar-title">Color</h3>
                     <ul className="brand-filter color-filter" id="colorFilter">
                       <li>
@@ -233,7 +243,7 @@ const Category = () => {
                         </div>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                   <div className="sidebar-box">
                     <div className="title-wrap">
                       <h3 className="sidebar-title">New Arrival</h3>
@@ -349,7 +359,7 @@ const Category = () => {
                         <div className="show-wrap">
                           <span>Show:</span>
                           <select name="show" className="select">
-                            <option value={1}>12</option>
+                            <option value={1}>2</option>
                             <option value={2}>16</option>
                             <option value={3}>20</option>
                             <option value={4}>24</option>
@@ -389,14 +399,22 @@ const Category = () => {
                             <img
                               src={product.img[0]}
                               alt="Product"
-                              style={{ height: 400, width: 300 }}
+                              style={{
+                                height: 250,
+                                width: 300,
+                                objectFit: "contain",
+                              }}
                               className="img-fluid"
                             />
                           </a>
                           <div className="cart-option cart-option-bottom">
                             <ul>
                               <li>
-                                <a role="button" className="add-to-cart">
+                                <a
+                                  role="button"
+                                  className="add-to-cart"
+                                  onClick={() => handleAddItem(product)}
+                                >
                                   <i className="fa-light fa-cart-shopping" />
                                 </a>
                               </li>
@@ -410,14 +428,13 @@ const Category = () => {
                                   <i className="fa-light fa-image" />
                                 </a>
                               </li>
-                              <li>
-                                <a
-                                  href="shop-details.html"
-                                  className="view-product"
-                                >
-                                  <i className="fa-light fa-eye" />
-                                </a>
-                              </li>
+                              <Link to={`/product/${product._id}`}>
+                                <li>
+                                  <a className="view-product">
+                                    <i className="fa-light fa-eye" />
+                                  </a>
+                                </li>
+                              </Link>
                             </ul>
                           </div>
                         </div>

@@ -1,6 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { setCategory } from "../../redux/actions/categoryAction";
+import { setProducts } from "../../redux/actions/productAction";
 
 const Category = () => {
   // const { data: categories = [], refetch } = useQuery({
@@ -11,28 +14,17 @@ const Category = () => {
   //     return data;
   //   },
   // });
-  //
-  //  const dispatch = useDispatch();
-  //   const fetchProducts = async () => {
-  //     const response = await axios
-  //         .get("https://pacific-wave-94058.herokuapp.com/products")
-  //         .catch((err) => {
-  //         });
-  //     dispatch(setProducts(response.data.slice(0, 6)));
-  // };
-
-  const [category, setCategory] = useState([]);
-  const getCategory = async () => {
-    try {
-      const response = await axios.get("http://localhost:5000/api/category");
-      setCategory(response.data);
-    } catch (error) {
-      console.error(error);
-    }
+  const category = useSelector((state) => state.allCategory.category);
+  const dispatch = useDispatch();
+  const fetchProducts = async () => {
+    const response = await axios
+      .get("http://localhost:5000/api/category")
+      .catch((err) => {});
+    dispatch(setCategory(response.data));
   };
 
   useEffect(() => {
-    getCategory();
+    fetchProducts();
   }, []);
 
   return (

@@ -3,18 +3,16 @@ import React from "react";
 const Footer = () => {
   return (
     <div>
-      <div className="footer">
+      <div className="footer footer-2">
         <div className="main-footer">
           <div className="container">
             <div className="custom-row">
               <div className="custom-col-2">
                 <div className="footer-about">
                   <div className="footer-logo">
-                    <img src="assets/images/Logo-2.png" alt="Logo" />
+                    <img src="/assets/images/Logo1.png" alt="Logo" />
                   </div>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  </p>
+                  <p>Got Question? Call us 24/7</p>
                   <ul>
                     <li>
                       <div className="icon">
@@ -23,9 +21,7 @@ const Footer = () => {
                         </span>
                       </div>
                       <div className="txt">
-                        <span>
-                          4920 Trails End Road Ft United States, FL 33311
-                        </span>
+                        <span>101/B CHOWDHURIPARA MALIBAGH,DHAKA 1219</span>
                       </div>
                     </li>
                     <li>
@@ -35,8 +31,7 @@ const Footer = () => {
                         </span>
                       </div>
                       <div className="txt">
-                        <a href="mailto:info@example.com">info@example.com</a>
-                        <a href="mailto:test@example.com">test@example.com</a>
+                        <a href="mailto:info@example.com">pino@gmail.com</a>
                       </div>
                     </li>
                     <li>
@@ -46,8 +41,7 @@ const Footer = () => {
                         </span>
                       </div>
                       <div className="txt">
-                        <a href="tel:+123456679123">+123 456 679 123</a>
-                        <a href="tel:+123456789">+123 456 789</a>
+                        <a href="tel:+123456679123">+8801789999751</a>
                       </div>
                     </li>
                   </ul>
@@ -185,11 +179,14 @@ const Footer = () => {
           <div className="container">
             <div className="row align-items-center">
               <div className="col-md-6">
-                <p>© Copyright Revel All Right Reserved</p>
+                <p>Copyright © 2023 Korbojoy All Right Reserved</p>
               </div>
               <div className="col-md-6">
                 <div className="part-img d-flex justify-content-md-end justify-content-center">
-                  <img src="assets/images/payment-gateway.png" alt="Image" />
+                  <img
+                    src="https://cdn3.arogga.com/public/img/payment-options.png"
+                    alt="Image"
+                  />
                 </div>
               </div>
             </div>

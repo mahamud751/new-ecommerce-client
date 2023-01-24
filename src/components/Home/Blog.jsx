@@ -31,7 +31,7 @@ const options = {
 const Blog = () => {
   return (
     <div>
-      <div className="blog pt-25 pb-50">
+      <div className="blog blog-2 pt-25 pb-50">
         <div className="container">
           <div className="panel panel-2">
             <div className="heading text-center">
