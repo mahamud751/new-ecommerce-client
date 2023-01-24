@@ -44,17 +44,97 @@ const Navbar = () => {
   };
   return (
     <div>
+      {/* preloader begin */}
+      <div className="preloader">
+        <img src="/assets/images/loader.gif" alt="Gif" />
+      </div>
+      {/* preloader end */}
       {/*------------------------------- PRODUCT QUICK VIEW PANEL START -------------------------------*/}
       <div className="product-quick-view-panel">
         <div className="img">
           <img
             className="quick-view-image"
-            src="/assets/images/index.html"
+            src="assets/images/index.html"
             alt="image"
           />
         </div>
       </div>
       {/*------------------------------- PRODUCT QUICK VIEW PANEL END -------------------------------*/}
+      {/*------------------------------- HEADER CART LIST START -------------------------------*/}
+      <div className="header-cart-wrap" id="headerCartWrap">
+        <div className="cart-list">
+          <div className="title">
+            <h3>Shopping Cart</h3>
+            <button className="cart-close">
+              <i className="fa-regular fa-xmark" />
+            </button>
+          </div>
+          <ul>
+            <li>
+              <a href="shop-details.html">
+                <div className="part-img">
+                  <img src="assets/images/feat-product-3.jpg" alt="Image" />
+                </div>
+                <div className="part-txt">
+                  <span className="name">Diamond wedding ring</span>
+                  <span>
+                    1 <i className="fa-regular fa-xmark" /> $5.00
+                  </span>
+                </div>
+              </a>
+              <button className="delete-btn">
+                <i className="fa-regular fa-trash-can" />
+              </button>
+            </li>
+            <li>
+              <a href="shop-details.html">
+                <div className="part-img">
+                  <img src="assets/images/feat-product-2.jpg" alt="Image" />
+                </div>
+                <div className="part-txt">
+                  <span className="name">Living Summer Chair</span>
+                  <span>
+                    1 <i className="fa-regular fa-xmark" /> $5.00
+                  </span>
+                </div>
+              </a>
+              <button className="delete-btn">
+                <i className="fa-regular fa-trash-can" />
+              </button>
+            </li>
+            <li>
+              <a href="shop-details.html">
+                <div className="part-img">
+                  <img src="assets/images/feat-product-10.jpg" alt="Image" />
+                </div>
+                <div className="part-txt">
+                  <span className="name">Wireless Headphone</span>
+                  <span>
+                    1 <i className="fa-regular fa-xmark" /> $5.00
+                  </span>
+                </div>
+              </a>
+              <button className="delete-btn">
+                <i className="fa-regular fa-trash-can" />
+              </button>
+            </li>
+          </ul>
+          <div className="total">
+            <p>
+              Subtotal: <span>$15:00</span>
+            </p>
+          </div>
+          <div className="btn-box">
+            <a href="#" className="def-btn">
+              View Cart
+            </a>
+            <a href="#" className="def-btn">
+              Checkout
+            </a>
+          </div>
+        </div>
+      </div>
+      {/*------------------------------- HEADER CART LIST END -------------------------------*/}
       {/*--------------------------- revel sidebar information area start ----------------------------*/}
       <div className="revel-header-mobile-sidebar side-info">
         <div className="revel-header-mobile-sidebar-inner">
