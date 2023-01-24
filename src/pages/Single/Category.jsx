@@ -1,8 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { add_item } from "../../redux/actions/cartAction";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const Category = () => {
+  const [alert, setAlert] = useState(false);
+  const MySwal = withReactContent(Swal);
   let { id } = useParams();
   const [category, setCategory] = useState([]);
   const getCategory = async () => {
@@ -20,6 +26,14 @@ const Category = () => {
     getCategory();
   }, []);
   console.log(category);
+
+  //cart
+  const dispatch = useDispatch();
+
+  const handleAddItem = (e) => {
+    dispatch(add_item(e));
+    MySwal.fire("Good job!", "successfully added", "success");
+  };
   return (
     <div>
       <div>
@@ -396,7 +410,11 @@ const Category = () => {
                           <div className="cart-option cart-option-bottom">
                             <ul>
                               <li>
-                                <a role="button" className="add-to-cart">
+                                <a
+                                  role="button"
+                                  className="add-to-cart"
+                                  onClick={() => handleAddItem(product)}
+                                >
                                   <i className="fa-light fa-cart-shopping" />
                                 </a>
                               </li>
