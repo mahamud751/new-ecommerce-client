@@ -224,6 +224,107 @@ const Navbar = () => {
       </div>
 
       {/*------------------------------- HEADER CART LIST END -------------------------------*/}
+      {/*--------------------------- revel sidebar information area start ----------------------------*/}
+      <div className="revel-header-mobile-sidebar side-info">
+        <div className="revel-header-mobile-sidebar-inner">
+          <div className="revel-header-mobile-sidebar-top text-center pb-35">
+            <div className="revel-header-mobile-sidebar-close-btn side-info-close">
+              <button>
+                <span>CLOSE</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={20}
+                  height={20}
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    id="close"
+                    d="M4.216,23.784a.714.714,0,0,0,1.011,0l8.779-8.778,8.782,8.778A.715.715,0,0,0,23.8,22.774L15.017,14,23.8,5.214A.715.715,0,0,0,22.785,4.2l-8.779,8.782L5.223,4.207A.714.714,0,0,0,4.216,5.214L13,14,4.216,22.777a.714.714,0,0,0,0,1.007Z"
+                    transform="translate(-4.008 -3.994)"
+                    fill="#777"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="revel-header-mobile-sidebar-logo pb-50">
+            <a href="https://revelwp.codebasket.net/">
+              <img
+                src="../../revelwp.codebasket.net/wp-content/themes/revel/assets/images/logo.png"
+                alt
+              />
+            </a>
+          </div>
+          <div className="revel-header-mobile-sidebar-menu-nav">
+            <div className="revel-mobile-menu" />
+          </div>
+        </div>
+      </div>
+      <div className="overlay" />
+
+      {/*------------------------------- PRODUCT QUICK VIEW PANEL END -------------------------------*/}
+      {/*------------------------------- HEADER CART LIST START -------------------------------*/}
+      <div className="header-cart-wrap header-cart-wrap-2" id="headerCartWrap">
+        <div className="cart-list">
+          <div className="title">
+            <h3>Shopping Cart</h3>
+            <button className="cart-close">
+              <i className="fa-regular fa-xmark" />
+            </button>
+          </div>
+          {getState.length ? (
+            <>
+              <ul>
+                {getState.map((pd, index) => {
+                  return (
+                    <li key={index}>
+                      <a href="shop-details.html">
+                        <div className="part-img">
+                          <img src={pd.img[0]} alt="Image" />
+                        </div>
+                        <div className="part-txt">
+                          <span className="name">{pd.name}</span>
+                          <span>
+                            {pd.qtn} <i className="fa-regular fa-xmark" />{" "}
+                            {pd.buyPrice}
+                          </span>
+                        </div>
+                      </a>
+                      <button className="delete-btn">
+                        <i
+                          className="fa-regular fa-trash-can"
+                          onClick={() => handleCart(pd._id)}
+                        />
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="total">
+                <p>
+                  Subtotal: <span>{price}</span>
+                </p>
+              </div>
+              <div className="btn-box">
+                <Link to={"/cart"}>
+                  <a className="def-btn">View Cart</a>
+                </Link>
+
+                <a href="#" className="def-btn">
+                  Checkout
+                </a>
+              </div>
+            </>
+          ) : (
+            <div>
+              {" "}
+              <p style={{ fontSize: 22, padding: 10 }}>Your cart is empty</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/*------------------------------- HEADER CART LIST END -------------------------------*/}
 
       {/*--------------------------- revel sidebar information area end ----------------------------*/}
       {/*------------------------------- HEADER WISH LIST START -------------------------------*/}
