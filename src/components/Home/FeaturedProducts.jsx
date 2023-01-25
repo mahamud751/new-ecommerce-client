@@ -6,40 +6,9 @@ import { setProducts } from "../../redux/actions/productAction";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { Link } from "react-router-dom";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-import Countdown from "./Countdown";
+
 import Rating from "react-rating";
 
-const options = {
-  margin: 30,
-  responsiveClass: true,
-  //   nav: true,
-  dots: true,
-  autoplay: true,
-  items: 4,
-  loop: true,
-  //   navText: ["Prev", "Next"],
-  smartSpeed: 1000,
-  responsive: {
-    0: {
-      items: 1,
-    },
-    400: {
-      items: 1,
-    },
-    600: {
-      items: 2,
-    },
-    700: {
-      items: 3,
-    },
-    1000: {
-      items: 4,
-    },
-  },
-};
 const FeaturedProducts = () => {
   const products = useSelector((state) => state.allProducts.products);
   const MySwal = withReactContent(Swal);
@@ -80,19 +49,7 @@ const FeaturedProducts = () => {
                 <div className="col-lg-8 col-md-8 countdown-col">
                   <div className="countdown-wrap d-flex">
                     <h3>Ending Soon...</h3>
-                    <div
-                      className="countdown"
-                      style={{
-                        fontSize: 28,
-                        color: "black",
-                        padding: "0px 20px",
-
-                        wordSpacing: 4,
-                        letterSpacing: 3,
-                      }}
-                    >
-                      <Countdown />
-                    </div>
+                    <div id="flashDealCountdown" className="countdown" />
                   </div>
                 </div>
                 <div className="col-lg-2 col-md-2 col-6">
@@ -105,12 +62,12 @@ const FeaturedProducts = () => {
               </div>
             </div>
             <div className="panel-body">
-              <div className="col-12">
-                <OwlCarousel className="owl-main  owl-theme" {...options}>
-                  {flashSale.map((product) => (
+              <div className="product-custom-row">
+                {flashSale.map((product) => (
+                  <div className="custom-col">
                     <div className="single-product-card">
                       <div className="part-img">
-                        <a href="shop-details.html">
+                        <Link to={`/product/${product._id}`}>
                           <img
                             src={product.img[0]}
                             alt="Product"
@@ -121,7 +78,7 @@ const FeaturedProducts = () => {
                             }}
                             className="img-fluid"
                           />
-                        </a>
+                        </Link>
                         <div className="cart-option cart-option-bottom">
                           <ul>
                             <li>
@@ -155,9 +112,9 @@ const FeaturedProducts = () => {
                       </div>
                       <div className="part-txt">
                         <h4 className="product-name" style={{ height: 70 }}>
-                          <a href="shop-details.html">
-                            {product.name.slice(0, 70)}
-                          </a>
+                          <Link to={`/product/${product._id}`}>
+                            <a>{product.name.slice(0, 70)}</a>
+                          </Link>
                         </h4>
                         {/* <p className="dscr">
                             Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -180,8 +137,8 @@ const FeaturedProducts = () => {
                         <button className="add-to-cart-btn">Add to Cart</button>
                       </div>
                     </div>
-                  ))}
-                </OwlCarousel>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -212,7 +169,7 @@ const FeaturedProducts = () => {
                   <div className="custom-col">
                     <div className="single-product-card">
                       <div className="part-img">
-                        <a href="shop-details.html">
+                        <Link to={`/product/${product._id}`}>
                           <img
                             src={product.img[0]}
                             alt="Product"
@@ -223,7 +180,8 @@ const FeaturedProducts = () => {
                             }}
                             className="img-fluid"
                           />
-                        </a>
+                        </Link>
+
                         <div className="cart-option cart-option-bottom">
                           <ul>
                             <li>
@@ -259,9 +217,9 @@ const FeaturedProducts = () => {
                       </div>
                       <div className="part-txt">
                         <h4 className="product-name">
-                          <a href="shop-details.html">
-                            {product.name.slice(0, 70)}
-                          </a>
+                          <Link to={`/product/${product._id}`}>
+                            <a>{product.name.slice(0, 70)}</a>
+                          </Link>
                         </h4>
                         {/* <p className="dscr">
                             Lorem ipsum dolor sit amet, consectetur adipisicing

@@ -6,8 +6,11 @@ import { add_item } from "../../redux/actions/cartAction";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { setCategory } from "../../redux/actions/categoryAction";
+import Feature from "../../components/Common/Feature";
 
+import useScript from "../../components/Common/Reload";
 const Category = () => {
+  useScript("/assets/js/shop-page.js");
   const MySwal = withReactContent(Swal);
   let { id } = useParams();
 
@@ -33,7 +36,6 @@ const Category = () => {
   return (
     <div>
       <div>
-        {/*------------------------------- BANNER SECTION START -------------------------------*/}
         <div className="banner banner-inner">
           <div className="container">
             <div className="row justify-content-between align-items-center">
@@ -64,7 +66,7 @@ const Category = () => {
         <div className="shop-wrap py-120">
           <div className="container">
             <div className="row g-4">
-              <div className="col-xl-3 col-lg-4 sidebar-col">
+              <div className="col-xl-3 col-lg-4">
                 <div className="shop-sidebar">
                   <div className="sidebar-box">
                     <h3 className="sidebar-title">By Category</h3>
@@ -155,7 +157,7 @@ const Category = () => {
                       </li>
                     </ul>
                   </div>
-                  {/* <div className="sidebar-box">
+                  <div className="sidebar-box">
                     <h3 className="sidebar-title">By Price</h3>
                     <div className="price-filter-wrap">
                       <div className="input-wrap">
@@ -173,8 +175,8 @@ const Category = () => {
                         Filter now
                       </button>
                     </div>
-                  </div> */}
-                  {/* <div className="sidebar-box">
+                  </div>
+                  <div className="sidebar-box">
                     <h3 className="sidebar-title">Color</h3>
                     <ul className="brand-filter color-filter" id="colorFilter">
                       <li>
@@ -243,7 +245,7 @@ const Category = () => {
                         </div>
                       </li>
                     </ul>
-                  </div> */}
+                  </div>
                   <div className="sidebar-box">
                     <div className="title-wrap">
                       <h3 className="sidebar-title">New Arrival</h3>
@@ -252,12 +254,10 @@ const Category = () => {
                     <ul className="new-arrival-slider">
                       <li>
                         <div className="part-img">
-                          <a href="shop-details.html">
-                            <img
-                              src="/assets/images/feat-product-1.jpg"
-                              alt="Image"
-                            />
-                          </a>
+                          <img
+                            src="/assets/images/feat-product-1.jpg"
+                            alt="Image"
+                          />
                         </div>
                         <div className="part-txt">
                           <a href="shop-details.html" className="title">
@@ -270,12 +270,10 @@ const Category = () => {
                       </li>
                       <li>
                         <div className="part-img">
-                          <a href="shop-details.html">
-                            <img
-                              src="/assets/images/feat-product-2.jpg"
-                              alt="Image"
-                            />
-                          </a>
+                          <img
+                            src="/assets/images/feat-product-1.jpg"
+                            alt="Image"
+                          />
                         </div>
                         <div className="part-txt">
                           <a href="shop-details.html" className="title">
@@ -288,12 +286,10 @@ const Category = () => {
                       </li>
                       <li>
                         <div className="part-img">
-                          <a href="shop-details.html">
-                            <img
-                              src="/assets/images/feat-product-3.jpg"
-                              alt="Image"
-                            />
-                          </a>
+                          <img
+                            src="/assets/images/feat-product-1.jpg"
+                            alt="Image"
+                          />
                         </div>
                         <div className="part-txt">
                           <a href="shop-details.html" className="title">
@@ -306,12 +302,42 @@ const Category = () => {
                       </li>
                       <li>
                         <div className="part-img">
-                          <a href="shop-details.html">
-                            <img
-                              src="/assets/images/feat-product-4.jpg"
-                              alt="Image"
-                            />
+                          <img
+                            src="/assets/images/feat-product-2.jpg"
+                            alt="Image"
+                          />
+                        </div>
+                        <div className="part-txt">
+                          <a href="shop-details.html" className="title">
+                            Diamond wedding ring
                           </a>
+                          <p className="price">
+                            $195.00 <span>229.99</span>
+                          </p>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="part-img">
+                          <img
+                            src="/assets/images/feat-product-3.jpg"
+                            alt="Image"
+                          />
+                        </div>
+                        <div className="part-txt">
+                          <a href="shop-details.html" className="title">
+                            Diamond wedding ring
+                          </a>
+                          <p className="price">
+                            $195.00 <span>229.99</span>
+                          </p>
+                        </div>
+                      </li>
+                      <li>
+                        <div className="part-img">
+                          <img
+                            src="/assets/images/feat-product-4.jpg"
+                            alt="Image"
+                          />
                         </div>
                         <div className="part-txt">
                           <a href="shop-details.html" className="title">
@@ -326,12 +352,7 @@ const Category = () => {
                   </div>
                   <div className="sidebar-new-arrival">
                     <div className="part-img">
-                      <a href="shop-details.html">
-                        <img
-                          src="/assets/images/new-arrival-4.jpg"
-                          alt="Image"
-                        />
-                      </a>
+                      <img src="/assets/images/new-arrival-4.jpg" alt="Image" />
                     </div>
                     <div className="part-txt">
                       <p>Season Sale!</p>
@@ -395,7 +416,7 @@ const Category = () => {
                     <div className="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
                       <div className="single-product-card">
                         <div className="part-img">
-                          <a href="shop-details.html">
+                          <Link to={`/product/${product._id}`}>
                             <img
                               src={product.img[0]}
                               alt="Product"
@@ -406,7 +427,8 @@ const Category = () => {
                               }}
                               className="img-fluid"
                             />
-                          </a>
+                          </Link>
+
                           <div className="cart-option cart-option-bottom">
                             <ul>
                               <li>
@@ -495,68 +517,13 @@ const Category = () => {
             </div>
           </div>
         </div>
+
+        {/*------------------------------- BANNER SECTION END -------------------------------*/}
+        {/*------------------------------- SHOP SECTION START -------------------------------*/}
+
         {/*------------------------------- SHOP SECTION END -------------------------------*/}
         {/*------------------------------- FEATURES SECTION START -------------------------------*/}
-        <div className="features" id="feature">
-          <div className="container">
-            <div className="panel panel-shadow px-0">
-              <div className="custom-row">
-                <div className="custom-col">
-                  <div className="single-feature">
-                    <div className="part-icon">
-                      <span>
-                        <i className="flaticon-money-saving" />
-                      </span>
-                    </div>
-                    <div className="part-txt">
-                      <h4>Free Delivery</h4>
-                      <p>For all order over $99</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="custom-col">
-                  <div className="single-feature">
-                    <div className="part-icon">
-                      <span>
-                        <i className="flaticon-dollar" />
-                      </span>
-                    </div>
-                    <div className="part-txt">
-                      <h4>30 Days Return</h4>
-                      <p>If goods have Problems</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="custom-col">
-                  <div className="single-feature">
-                    <div className="part-icon">
-                      <span>
-                        <i className="flaticon-credit-card" />
-                      </span>
-                    </div>
-                    <div className="part-txt">
-                      <h4>Secure Payment</h4>
-                      <p>100% secure payment</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="custom-col">
-                  <div className="single-feature">
-                    <div className="part-icon">
-                      <span>
-                        <i className="flaticon-call-center" />
-                      </span>
-                    </div>
-                    <div className="part-txt">
-                      <h4>24/7 Support</h4>
-                      <p>Dedicated support</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Feature />
         {/*------------------------------- FEATURES SECTION END -------------------------------*/}
         {/* Mirrored from revelecommerce.codebasket.net/revel/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Jan 2023 08:50:56 GMT */}
       </div>

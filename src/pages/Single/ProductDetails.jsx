@@ -2,13 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-import { add_item } from "../../redux/actions/cartAction";
+import {
+  add_item,
+  delete_cart,
+  remove_item,
+} from "../../redux/actions/cartAction";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { setProducts } from "../../redux/actions/productAction";
+import Rating from "react-rating";
+import useScript from "../../components/Common/Reload";
 
 const ProductDetails = () => {
+  useScript("/assets/js/main.js");
   const MySwal = withReactContent(Swal);
+  const getState = useSelector((state) => state.cartReducer.cart);
   const dispatch = useDispatch();
   let { id } = useParams();
   const products = useSelector((state) => state.allProducts.products);
@@ -25,12 +33,19 @@ const ProductDetails = () => {
   }, []);
 
   const mainProduct = products.find((product) => product._id === id);
+  const mainProductCart = getState.find((pd) => pd._id === mainProduct._id);
 
-  console.log(products);
-  console.log(mainProduct);
+  console.log(mainProductCart);
+
   const handleAddItem = (e) => {
     dispatch(add_item(e));
-    MySwal.fire("Good job!", "successfully added", "success");
+  };
+  const handleRemoveItem = (e) => {
+    dispatch(remove_item(e));
+  };
+
+  const handleDeleteCart = (_id) => {
+    dispatch(delete_cart(_id));
   };
   return (
     <div>
@@ -101,21 +116,26 @@ const ProductDetails = () => {
                 <div className="part-txt">
                   <h2 className="main-product-title">{mainProduct.name}</h2>
                   <div className="review">
-                    <span className="star">
-                      <i className="fa-solid fa-star-sharp rated" />
-                      <i className="fa-solid fa-star-sharp rated" />
-                      <i className="fa-solid fa-star-sharp rated" />
-                      <i className="fa-solid fa-star-sharp rated" />
-                      <i className="fa-solid fa-star-sharp" />
-                    </span>
+                    <Rating
+                      initialRating={mainProduct.rating}
+                      emptySymbol="far fa-star icon-color"
+                      fullSymbol="fas fa-star icon-color"
+                      readonly
+                    ></Rating>
                     <span className="rating-amount">3 Reviews</span>
                   </div>
                   <p className="price">
-                    <span>$96.00</span> $75.00
+                    <span>৳{mainProduct.realPrice}</span> ৳
+                    {mainProduct.buyPrice}
                   </p>
                   <ul className="short-details">
                     <li>
-                      Availability: <span>In stock</span>
+                      Availability:{" "}
+                      {mainProduct.qtn > 0 ? (
+                        <span>In stock</span>
+                      ) : (
+                        <span>Out of stock</span>
+                      )}
                     </li>
                     <li>
                       Product Code: <span>#4657</span>
@@ -161,35 +181,57 @@ const ProductDetails = () => {
                           <option value={4}>XL</option>
                         </select>
                       </div>
+
                       <div className="col-lg-4 col-md-12 col-sm-4">
                         <div className="quantity-wrap">
-                          <label>QTY</label>
-                          <div className="product-count">
-                            <div className="quantity rapper-quantity">
-                              <input
-                                type="number"
-                                min={1}
-                                max={100}
-                                step={1}
-                                defaultValue={1}
-                                readOnly
-                              />
-                              <div className="quantity-nav">
-                                <div className="quantity-button quantity-down">
-                                  <i className="fa-solid fa-minus" />
-                                </div>
-                                <div className="quantity-button quantity-up">
-                                  <i className="fa-solid fa-plus" />
+                          {mainProductCart ? (
+                            <div className="product-count">
+                              <div className="quantity rapper-quantity">
+                                <input
+                                  type="number"
+                                  min={1}
+                                  max={100}
+                                  step={1}
+                                  value={mainProductCart.qtn}
+                                />
+                                <div className="quantity-nav">
+                                  <div
+                                    className="quantity-button quantity-down"
+                                    onClick={
+                                      mainProductCart.qtn <= 1
+                                        ? () =>
+                                            handleDeleteCart(
+                                              mainProductCart._id
+                                            )
+                                        : () =>
+                                            handleRemoveItem(mainProductCart)
+                                    }
+                                  >
+                                    <i className="fa-solid fa-minus" />
+                                  </div>
+                                  <div
+                                    className="quantity-button quantity-up"
+                                    onClick={() =>
+                                      handleAddItem(mainProductCart)
+                                    }
+                                  >
+                                    <i className="fa-solid fa-plus" />
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
+                          ) : (
+                            ""
+                          )}
                         </div>
                       </div>
                     </div>
                   </form>
                   <div className="btn-box">
-                    <button id="addToCart">
+                    <button
+                      id="addToCart"
+                      onClick={() => handleAddItem(mainProduct)}
+                    >
                       <span>
                         <i className="fa-light fa-cart-shopping" />
                       </span>{" "}
