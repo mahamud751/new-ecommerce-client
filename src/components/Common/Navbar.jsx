@@ -45,14 +45,15 @@ const Navbar = () => {
   return (
     <div>
       {/* preloader begin */}
-      <div class="preloader">
-        <img src="assets/images/loader.gif" alt="Gif" />
+      <div className="preloader">
+        <img src="/assets/images/loader.gif" alt="Gif" />
       </div>
-
-      <div class="product-quick-view-panel">
-        <div class="img">
+      {/* preloader end */}
+      {/*------------------------------- PRODUCT QUICK VIEW PANEL START -------------------------------*/}
+      <div className="product-quick-view-panel">
+        <div className="img">
           <img
-            class="quick-view-image"
+            className="quick-view-image"
             src="assets/images/index.html"
             alt="image"
           />
@@ -157,9 +158,74 @@ const Navbar = () => {
         </div>
       </div>
       <div className="overlay" />
+
+      {/*------------------------------- PRODUCT QUICK VIEW PANEL END -------------------------------*/}
+      {/*------------------------------- HEADER CART LIST START -------------------------------*/}
+      <div className="header-cart-wrap header-cart-wrap-2" id="headerCartWrap">
+        <div className="cart-list">
+          <div className="title">
+            <h3>Shopping Cart</h3>
+            <button className="cart-close">
+              <i className="fa-regular fa-xmark" />
+            </button>
+          </div>
+          {getState.length ? (
+            <>
+              <ul>
+                {getState.map((pd, index) => {
+                  return (
+                    <li key={index}>
+                      <a href="shop-details.html">
+                        <div className="part-img">
+                          <img src={pd.img[0]} alt="Image" />
+                        </div>
+                        <div className="part-txt">
+                          <span className="name">{pd.name}</span>
+                          <span>
+                            {pd.qtn} <i className="fa-regular fa-xmark" />{" "}
+                            {pd.buyPrice}
+                          </span>
+                        </div>
+                      </a>
+                      <button className="delete-btn">
+                        <i
+                          className="fa-regular fa-trash-can"
+                          onClick={() => handleCart(pd._id)}
+                        />
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+              <div className="total">
+                <p>
+                  Subtotal: <span>{price}</span>
+                </p>
+              </div>
+              <div className="btn-box">
+                <Link to={"/cart"}>
+                  <a className="def-btn">View Cart</a>
+                </Link>
+
+                <a href="#" className="def-btn">
+                  Checkout
+                </a>
+              </div>
+            </>
+          ) : (
+            <div>
+              {" "}
+              <p style={{ fontSize: 22, padding: 10 }}>Your cart is empty</p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/*------------------------------- HEADER CART LIST END -------------------------------*/}
+
       {/*--------------------------- revel sidebar information area end ----------------------------*/}
       {/*------------------------------- HEADER WISH LIST START -------------------------------*/}
-      <div className="header-cart-wrap" id="headerWishWrap">
+      <div className="header-cart-wrap header-cart-wrap-2" id="headerWishWrap">
         <div className="cart-list">
           <div className="title">
             <h3>Wish List</h3>
@@ -234,7 +300,7 @@ const Navbar = () => {
       </div>
       {/*------------------------------- HEADER WISH LIST END -------------------------------*/}
       {/*------------------------------- HEADER SECTION START -------------------------------*/}
-      <div className="header">
+      <div className="header header-2">
         <div className="top-header">
           <div className="container">
             <div className="row">
@@ -245,10 +311,10 @@ const Navbar = () => {
                   </li>
                   <li>
                     <span className="mr-5px">Call Us:</span>
-                    <a href="tel:001-1234-88888"> 001-1234-88888</a>
+                    <a href="tel:001-1234-88888"> +880178999751</a>
                   </li>
                   <li>
-                    <a href="#">Sell On Revel </a>
+                    <a href="#">Sell On Korbojoy </a>
                   </li>
                 </ul>
               </div>
@@ -287,9 +353,11 @@ const Navbar = () => {
             <div className="row justify-content-between align-items-center g-md-4 g-sm-0">
               <div className="col-xxl-3 col-xl-2 col-lg-2 col-sm-3 col-6">
                 <div className="logo">
-                  <a href="index.html">
-                    <img src="assets/images/logo.png" alt="logo" />
-                  </a>
+                  <Link to={"/"}>
+                    <a>
+                      <img src="assets/images/logo1.png" alt="logo" />
+                    </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-xxl-6 col-xl-7 col-lg-8 col-sm-6 col-12 search-col">
@@ -330,7 +398,7 @@ const Navbar = () => {
                     <div className="txt">
                       <span className="d-block">Live Chat or :</span>
                       <a className="d-block" href="tel:+997509153">
-                        +997 509 153
+                        +8801789999751
                       </a>
                     </div>
                   </li>

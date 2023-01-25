@@ -1,52 +1,18 @@
 import React from "react";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
-const options = {
-  margin: 30,
-  responsiveClass: true,
-  //   nav: true,
-  dots: true,
-  autoplay: true,
-  //   navText: ["Prev", "Next"],
-  smartSpeed: 1000,
-  responsive: {
-    0: {
-      items: 1,
-    },
-    400: {
-      items: 1,
-    },
-    600: {
-      items: 2,
-    },
-    700: {
-      items: 3,
-    },
-    1000: {
-      items: 4,
-    },
-  },
-};
+
 const Blog = () => {
   return (
     <div>
-      <div className="blog pt-25 pb-50">
+      <div className="blog blog-2 pt-25 pb-50">
         <div className="container">
-          <div className="panel panel-2">
-            <div className="heading text-center">
+          <div className="panel panel-3">
+            <div className="heading heading-2 text-center">
               <h2>Latest Blog</h2>
             </div>
-
-            <OwlCarousel
-              className="owl-main  owl-theme"
-              items={4}
-              loop={true}
-              {...options}
-            >
+            <div className="blog-slider blog-slider-2">
               <div className="single-blog">
                 <div className="part-img">
-                  <img src="assets/images/blog-img-1.jpg" alt="Image" />
+                  <img src="assets/images/blog-img-4.jpg" alt="Image" />
                 </div>
                 <div className="part-txt">
                   <div className="tag-n-date">
@@ -63,6 +29,11 @@ const Blog = () => {
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Quis
                   </p>
+                  <a href="blog-details.html" className="continue">
+                    <span>
+                      <i className="fa-light fa-arrow-right" />
+                    </span>
+                  </a>
                 </div>
               </div>
               <div className="single-blog">
@@ -84,11 +55,16 @@ const Blog = () => {
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Quis
                   </p>
+                  <a href="blog-details.html" className="continue">
+                    <span>
+                      <i className="fa-light fa-arrow-right" />
+                    </span>
+                  </a>
                 </div>
               </div>
               <div className="single-blog">
                 <div className="part-img">
-                  <img src="assets/images/blog-img-3.jpg" alt="Image" />
+                  <img src="assets/images/blog-img-5.jpg" alt="Image" />
                 </div>
                 <div className="part-txt">
                   <div className="tag-n-date">
@@ -105,11 +81,16 @@ const Blog = () => {
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Quis
                   </p>
+                  <a href="blog-details.html" className="continue">
+                    <span>
+                      <i className="fa-light fa-arrow-right" />
+                    </span>
+                  </a>
                 </div>
               </div>
               <div className="single-blog">
                 <div className="part-img">
-                  <img src="assets/images/blog-img-4.jpg" alt="Image" />
+                  <img src="assets/images/blog-img-1.jpg" alt="Image" />
                 </div>
                 <div className="part-txt">
                   <div className="tag-n-date">
@@ -126,9 +107,14 @@ const Blog = () => {
                     do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. Quis
                   </p>
+                  <a href="blog-details.html" className="continue">
+                    <span>
+                      <i className="fa-light fa-arrow-right" />
+                    </span>
+                  </a>
                 </div>
               </div>
-            </OwlCarousel>
+            </div>
           </div>
         </div>
       </div>
