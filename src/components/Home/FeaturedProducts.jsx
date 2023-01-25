@@ -144,7 +144,6 @@ const FeaturedProducts = () => {
           </div>
         </div>
       </div>
-
       {/* feature products*/}
 
       <div className="featured-product featured-product py-25">
