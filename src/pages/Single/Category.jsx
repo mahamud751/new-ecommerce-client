@@ -157,7 +157,7 @@ const Category = () => {
                       </li>
                     </ul>
                   </div>
-                  {/* <div className="sidebar-box">
+                  <div className="sidebar-box">
                     <h3 className="sidebar-title">By Price</h3>
                     <div className="price-filter-wrap">
                       <div className="input-wrap">
@@ -175,8 +175,8 @@ const Category = () => {
                         Filter now
                       </button>
                     </div>
-                  </div> */}
-                  {/* <div className="sidebar-box">
+                  </div>
+                  <div className="sidebar-box">
                     <h3 className="sidebar-title">Color</h3>
                     <ul className="brand-filter color-filter" id="colorFilter">
                       <li>
@@ -245,7 +245,7 @@ const Category = () => {
                         </div>
                       </li>
                     </ul>
-                  </div> */}
+                  </div>
                   <div className="sidebar-box">
                     <div className="title-wrap">
                       <h3 className="sidebar-title">New Arrival</h3>

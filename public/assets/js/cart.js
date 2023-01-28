@@ -2,8 +2,8 @@
   "use strict";
   $(document).ready(function () {
     /*---------------------------
-        Tab Change Function
-        ---------------------------*/
+      Tab Change Function
+      ---------------------------*/
     $(".single-nav").on("click", function () {
       var tabId = $(this).attr("data-tab");
       $("#" + tabId)
@@ -32,8 +32,8 @@
     });
 
     /*---------------------------
-        Cart Price Update In Single Product
-        ---------------------------*/
+      Cart Price Update In Single Product
+      ---------------------------*/
     $(".quantity-button").each(function () {
       $(this).on("click", function () {
         var mainPrice = parseFloat(
@@ -52,8 +52,8 @@
     });
 
     /*---------------------------
-        Delete Product From Cart
-        ---------------------------*/
+      Delete Product From Cart
+      ---------------------------*/
     $(".cart-delete").on("click", function () {
       $(this).parents("tr").remove();
       $("#cartUpdate").removeAttr("disabled");
@@ -73,8 +73,8 @@
     });
 
     /*---------------------------
-        Choose Shipping Mode
-        ---------------------------*/
+      Choose Shipping Mode
+      ---------------------------*/
     $(".shipping-check:checked").siblings("label").addClass("checked");
     $(".shipping-check").on("change", function () {
       if ($(".shipping-check").is(":checked")) {
@@ -88,8 +88,8 @@
     });
 
     /*---------------------------
-        Cart Total Update
-        ---------------------------*/
+      Cart Total Update
+      ---------------------------*/
     $("#cartUpdate").on("click", function () {
       $(this).prop("disabled", true);
       $("#proceedToCheckout").prop("disabled", false);
@@ -115,8 +115,8 @@
     });
 
     /*---------------------------
-        Add/Remove Shipping Fee
-        ---------------------------*/
+      Add/Remove Shipping Fee
+      ---------------------------*/
     $("#homeDelivery").on("change", function () {
       $(".single-nav.active")
         .next()
@@ -125,7 +125,7 @@
       $("#proceedToCheckout").prop("disabled", false);
       if ($(this).is(":checked")) {
         $("#shippingFee, #shippingFee2").html(
-          '$<span class="shipping-fee">40</span>'
+          '৳<span class="shipping-fee">40</span>'
         );
 
         var shippingFee = parseFloat($("#shippingFee .shipping-fee").text());
@@ -152,8 +152,8 @@
     });
 
     /*---------------------------
-        Different Shipping Address Form Show
-        ---------------------------*/
+      Different Shipping Address Form Show
+      ---------------------------*/
     $("#shippingAddress").hide();
     $("#shipDifferentAddress").on("change", function () {
       if ($(this).is(":checked")) {
@@ -165,8 +165,8 @@
     });
 
     /*---------------------------
-        Payment Method Dropdown
-        ---------------------------*/
+      Payment Method Dropdown
+      ---------------------------*/
     $(".single-payment-card .panel-body").hide();
     $(".single-payment-card .panel-header").on("click", function () {
       $(this).siblings().slideDown(300);
@@ -181,8 +181,8 @@
     });
 
     /*---------------------------
-        Add Space After Every Four Number
-        ---------------------------*/
+      Add Space After Every Four Number
+      ---------------------------*/
     document
       .getElementById("creditCardNumber")
       .addEventListener("input", function (e) {
@@ -193,8 +193,8 @@
       });
 
     /*---------------------------
-        Card Icon Show On Entering Card Number
-        ---------------------------*/
+      Card Icon Show On Entering Card Number
+      ---------------------------*/
     $("#creditCardNumber").on("change paste keyup", function () {
       var val = $(this).val();
       if (val.length >= 19) {
@@ -205,8 +205,8 @@
     });
 
     /*---------------------------
-        Month Picker Intialize
-        ---------------------------*/
+      Month Picker Intialize
+      ---------------------------*/
     $("#datepicker").MonthPicker({
       Button: false,
     });
