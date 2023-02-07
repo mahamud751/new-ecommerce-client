@@ -44,10 +44,6 @@ const Navbar = () => {
   };
   return (
     <div>
-      {/* preloader begin */}
-
-      {/* preloader end */}
-      {/*------------------------------- PRODUCT QUICK VIEW PANEL START -------------------------------*/}
       <div className="product-quick-view-panel">
         <div className="img">
           <img
@@ -57,11 +53,6 @@ const Navbar = () => {
           />
         </div>
       </div>
-      {/*------------------------------- PRODUCT QUICK VIEW PANEL END -------------------------------*/}
-      {/*------------------------------- HEADER CART LIST START -------------------------------*/}
-
-      {/*------------------------------- PRODUCT QUICK VIEW PANEL END -------------------------------*/}
-      {/*------------------------------- HEADER CART LIST START -------------------------------*/}
       <div className="header-cart-wrap header-cart-wrap-2" id="headerCartWrap">
         <div className="cart-list">
           <div className="title">
@@ -1180,10 +1171,10 @@ const Navbar = () => {
               </div>
               <div className="col-lg-2">
                 <div className="account-link">
-                  <NavLink to="/signup">Register</NavLink>
+                  <NavLink to="/register">Register</NavLink>
 
                   <span>/</span>
-                  <a href="register.html">Sign in</a>
+                  <NavLink to="/login">Sign in</NavLink>
                 </div>
               </div>
             </div>
