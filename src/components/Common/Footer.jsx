@@ -1,6 +1,11 @@
 import React from "react";
+import { NavLink, useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
+  if (location.pathname === "/register" || location.pathname === "/login") {
+    return null;
+  }
   return (
     <div>
       <div className="footer footer-2">
@@ -53,19 +58,19 @@ const Footer = () => {
                     <h3 className="footer-title">Information</h3>
                     <ul>
                       <li>
-                        <a href="about.html">About Us</a>
+                        <NavLink to="/about">About Us</NavLink>
                       </li>
                       <li>
-                        <a href="contact.html">Contact Us</a>
+                        <NavLink to="/contact">Contact Us</NavLink>
                       </li>
                       <li>
-                        <a href="blog.html">Blogs</a>
+                        <NavLink to="/blog">Blogs</NavLink>
                       </li>
                       <li>
-                        <a href="#">Terms Of Use</a>
+                        <NavLink to="/terms_condition">Terms Of Use</NavLink>
                       </li>
                       <li>
-                        <a href="#">Privacy Policies</a>
+                        <NavLink to="/privacy">Privacy Policies</NavLink>
                       </li>
                     </ul>
                   </div>
@@ -73,19 +78,16 @@ const Footer = () => {
                     <h3 className="footer-title">Information</h3>
                     <ul>
                       <li>
+                        <NavLink to="/refund">Refund Policies</NavLink>
+                      </li>
+                      <li>
+                        <NavLink to="/return">Return Policies</NavLink>
+                      </li>
+                      <li>
                         <a href="cart.html">My Order</a>
                       </li>
                       <li>
                         <a href="wishlist.html">Wishlist</a>
-                      </li>
-                      <li>
-                        <a href="account.html">My Credit</a>
-                      </li>
-                      <li>
-                        <a href="register.html">Login</a>
-                      </li>
-                      <li>
-                        <a href="account.html">Personal Info</a>
                       </li>
                     </ul>
                   </div>
