@@ -27,7 +27,6 @@ const Navbar = () => {
     getCategory();
   }, []);
 
-  //cart
   const getState = useSelector((state) => state.cartReducer.cart);
   const [price, setPrice] = React.useState(0);
   // eslint-disable-next-line react-hooks/exhaustive-deps
