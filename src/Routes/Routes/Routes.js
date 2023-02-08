@@ -8,11 +8,16 @@ import Cart from "../../pages/Cart/Cart";
 import Checkout from "../../pages/Checkout/Checkout";
 import Contact from "../../pages/Contact/Contact";
 import Home from "../../pages/Home/Home";
+<<<<<<< HEAD
 import PrivacyPolicy from "../../pages/PrivacyPolicy/PrivacyPolicy";
 import RefundPolicy from "../../pages/RefundPolicy/RefundPolicy";
 import Login from "../../pages/Registration/Login";
 import Registration from "../../pages/Registration/Registration";
 import ReturnPolicy from "../../pages/ReturnPolicy/ReturnPolicy";
+=======
+import Login from "../../pages/Registration/Login";
+import Registration from "../../pages/Registration/Registration";
+>>>>>>> aff3861c6b4b0d958cf61b109f4369074b05c0d9
 import SignUp from "../../pages/SignUp/SignUp";
 import Category from "../../pages/Single/Category";
 import ProductDetails from "../../pages/Single/ProductDetails";
@@ -34,6 +39,7 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
+<<<<<<< HEAD
         path: "/about",
         element: <About></About>,
       },
@@ -46,6 +52,8 @@ const router = createBrowserRouter([
         element: <Blog></Blog>,
       },
       {
+=======
+>>>>>>> aff3861c6b4b0d958cf61b109f4369074b05c0d9
         path: "/register",
         element: <Registration></Registration>,
       },
