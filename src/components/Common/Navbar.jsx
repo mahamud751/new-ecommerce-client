@@ -801,7 +801,6 @@ const Navbar = () => {
                               Cart
                             </NavLink>
                           </li>
-
                           <li className="nav-item">
                             <NavLink to="/blog" className="nav-link">
                               Blog
