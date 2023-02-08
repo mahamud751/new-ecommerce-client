@@ -1,12 +1,18 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { delete_cart } from "../../redux/actions/cartAction";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => console.log(err));
+  };
   const [category, setCategory] = useState([]);
   const getCategory = async () => {
     try {
@@ -42,12 +48,13 @@ const Navbar = () => {
   const handleCart = (_id) => {
     dispatch(delete_cart(_id));
   };
+
+  const location = useLocation();
+  if (location.pathname === "/register" || location.pathname === "/login") {
+    return null;
+  }
   return (
     <div>
-      {/* preloader begin */}
-
-      {/* preloader end */}
-      {/*------------------------------- PRODUCT QUICK VIEW PANEL START -------------------------------*/}
       <div className="product-quick-view-panel">
         <div className="img">
           <img
@@ -57,11 +64,6 @@ const Navbar = () => {
           />
         </div>
       </div>
-      {/*------------------------------- PRODUCT QUICK VIEW PANEL END -------------------------------*/}
-      {/*------------------------------- HEADER CART LIST START -------------------------------*/}
-
-      {/*------------------------------- PRODUCT QUICK VIEW PANEL END -------------------------------*/}
-      {/*------------------------------- HEADER CART LIST START -------------------------------*/}
       <div className="header-cart-wrap header-cart-wrap-2" id="headerCartWrap">
         <div className="cart-list">
           <div className="title">
@@ -1031,10 +1033,11 @@ const Navbar = () => {
                             </NavLink>
                           </li>
                           <li className="nav-item">
-                            <a className="nav-link" href="about.html">
+                            <NavLink to="/about" className="nav-link">
                               About
-                            </a>
+                            </NavLink>
                           </li>
+
                           <li className="nav-item">
                             <NavLink to="/cart" className="nav-link">
                               Cart
@@ -1137,40 +1140,15 @@ const Navbar = () => {
                               </li>
                             </ul>
                           </li>
-                          <li className="nav-item dropdown">
-                            <a
-                              className="nav-link dropdown-toggle"
-                              href="#"
-                              id="blogDropdown"
-                              role="button"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
+                          <li className="nav-item">
+                            <NavLink to="/blog" className="nav-link">
                               Blog
-                            </a>
-                            <ul
-                              className="dropdown-menu"
-                              aria-labelledby="blogDropdown"
-                            >
-                              <li>
-                                <a className="dropdown-item" href="blog.html">
-                                  Blog Page
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="dropdown-item"
-                                  href="blog-details.html"
-                                >
-                                  Blog Details
-                                </a>
-                              </li>
-                            </ul>
+                            </NavLink>
                           </li>
                           <li className="nav-item">
-                            <a className="nav-link" href="contact.html">
+                            <NavLink to="/contact" className="nav-link">
                               Contact
-                            </a>
+                            </NavLink>
                           </li>
                         </ul>
                       </nav>
@@ -1178,14 +1156,27 @@ const Navbar = () => {
                   </div>
                 </nav>
               </div>
-              <div className="col-lg-2">
-                <div className="account-link">
-                  <NavLink to="/signup">Register</NavLink>
+              {!user ? (
+                <>
+                  <div className="col-lg-2">
+                    <div className="account-link">
+                      <NavLink to="/register">Register</NavLink>
 
-                  <span>/</span>
-                  <a href="register.html">Sign in</a>
+                      <span>/</span>
+                      <NavLink to="/login">Sign in</NavLink>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div className="col-lg-2">
+                  <div className="account-link">
+                    <NavLink to={"/account"}>{user.displayName}</NavLink>
+
+                    <span>/</span>
+                    <NavLink onClick={handleLogOut}>Log out</NavLink>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

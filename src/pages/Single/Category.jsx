@@ -27,6 +27,13 @@ const Category = () => {
     fetchProducts();
   }, []);
 
+  const price = category.map((pd) => pd.buyPrice);
+  const handleSort = (e) => {
+    // const sort = price.sort((a, b) => a - b);
+    console.log("sss");
+    e.preventDefault();
+  };
+
   //cart
 
   const handleAddItem = (e) => {
@@ -368,6 +375,7 @@ const Category = () => {
                     <div className="col-md-3 d-md-block d-none">
                       <h3 id="shopViewType">Shop Grid</h3>
                     </div>
+
                     <div className="col-md-9">
                       <div className="top-bar-right">
                         <select name="sorting" className="select">
@@ -412,85 +420,87 @@ const Category = () => {
                   </div>
                 </div>
                 <div className="row g-lg-4 g-3">
-                  {category.map((product) => (
-                    <div className="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
-                      <div className="single-product-card">
-                        <div className="part-img">
-                          <Link to={`/product/${product._id}`}>
-                            <img
-                              src={product.img[0]}
-                              alt="Product"
-                              style={{
-                                height: 250,
-                                width: 300,
-                                objectFit: "contain",
-                              }}
-                              className="img-fluid"
-                            />
-                          </Link>
+                  {category.map((product) => {
+                    return (
+                      <div className="product-col col-xxl-3 col-xl-4 col-lg-6 col-md-4 col-6">
+                        <div className="single-product-card">
+                          <div className="part-img">
+                            <Link to={`/product/${product._id}`}>
+                              <img
+                                src={product.img[0]}
+                                alt="Product"
+                                style={{
+                                  height: 250,
+                                  width: 300,
+                                  objectFit: "contain",
+                                }}
+                                className="img-fluid"
+                              />
+                            </Link>
 
-                          <div className="cart-option cart-option-bottom">
-                            <ul>
-                              <li>
-                                <a
-                                  role="button"
-                                  className="add-to-cart"
-                                  onClick={() => handleAddItem(product)}
-                                >
-                                  <i className="fa-light fa-cart-shopping" />
-                                </a>
-                              </li>
-                              <li>
-                                <a role="button" className="add-to-wish">
-                                  <i className="fa-light fa-heart" />
-                                </a>
-                              </li>
-                              <li>
-                                <a role="button" className="quick-view">
-                                  <i className="fa-light fa-image" />
-                                </a>
-                              </li>
-                              <Link to={`/product/${product._id}`}>
+                            <div className="cart-option cart-option-bottom">
+                              <ul>
                                 <li>
-                                  <a className="view-product">
-                                    <i className="fa-light fa-eye" />
+                                  <a
+                                    role="button"
+                                    className="add-to-cart"
+                                    onClick={() => handleAddItem(product)}
+                                  >
+                                    <i className="fa-light fa-cart-shopping" />
                                   </a>
                                 </li>
-                              </Link>
-                            </ul>
+                                <li>
+                                  <a role="button" className="add-to-wish">
+                                    <i className="fa-light fa-heart" />
+                                  </a>
+                                </li>
+                                <li>
+                                  <a role="button" className="quick-view">
+                                    <i className="fa-light fa-image" />
+                                  </a>
+                                </li>
+                                <Link to={`/product/${product._id}`}>
+                                  <li>
+                                    <a className="view-product">
+                                      <i className="fa-light fa-eye" />
+                                    </a>
+                                  </li>
+                                </Link>
+                              </ul>
+                            </div>
                           </div>
-                        </div>
-                        <div className="part-txt">
-                          <h4 className="product-name">
-                            <a href="shop-details.html">
-                              {product.name.slice(0, 70)}
-                            </a>
-                          </h4>
-                          {/* <p className="dscr">
+                          <div className="part-txt">
+                            <h4 className="product-name">
+                              <a href="shop-details.html">
+                                {product.name.slice(0, 70)}
+                              </a>
+                            </h4>
+                            {/* <p className="dscr">
                             Lorem ipsum dolor sit amet, consectetur adipisicing
                             elit. Ducimus aliquid laborum aperiam dolores.
                             Dignissimos at harum corporis qui illo nam fugit
                             recusandae ratione odit neque officia, accusamus ab,
                             assumenda odio.
                           </p> */}
-                          <p className="price">
-                            <span>${product.realPrice}</span>$
-                            {product.offerPrice}
-                          </p>
-                          <div className="star">
-                            <i className="fa-solid fa-star-sharp rated" />
-                            <i className="fa-solid fa-star-sharp rated" />
-                            <i className="fa-solid fa-star-sharp rated" />
-                            <i className="fa-solid fa-star-sharp rated" />
-                            <i className="fa-solid fa-star-sharp" />
+                            <p className="price">
+                              <span>${product.realPrice}</span>$
+                              {product.offerPrice}
+                            </p>
+                            <div className="star">
+                              <i className="fa-solid fa-star-sharp rated" />
+                              <i className="fa-solid fa-star-sharp rated" />
+                              <i className="fa-solid fa-star-sharp rated" />
+                              <i className="fa-solid fa-star-sharp rated" />
+                              <i className="fa-solid fa-star-sharp" />
+                            </div>
+                            <button className="add-to-cart-btn">
+                              Add to Cart
+                            </button>
                           </div>
-                          <button className="add-to-cart-btn">
-                            Add to Cart
-                          </button>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
 
                 <div className="bottom-pagination d-flex justify-content-center">

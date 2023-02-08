@@ -42,8 +42,8 @@
         var qty = $(this).parents(".quantity").find("input").val();
         var updatePrice = mainPrice * qty;
         $(this).parents("tr").find(".total-price").text(updatePrice);
-        $("#cartUpdate").removeAttr("disabled");
-        $("#proceedToCheckout").prop("disabled", true);
+        $("#cartUpdate").removeAttr("active");
+        $("#proceedToCheckout").prop("active", true);
         $(".single-nav.active")
           .next()
           .removeClass("active")

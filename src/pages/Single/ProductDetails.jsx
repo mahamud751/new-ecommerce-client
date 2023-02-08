@@ -144,13 +144,8 @@ const ProductDetails = () => {
                       Tags: <span>Fashion, Hood, Classic</span>
                     </li>
                   </ul>
-                  <p className="dscr">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Quae rerum eveniet esse modi nemo mollitia. Vitae adipisci
-                    ab nulla sequi fuga saepe harum placeat voluptatibus ea
-                    quam, assumenda illum natus.
-                  </p>
-                  <form>
+                  <p className="dscr">{mainProduct.fullDescription}</p>
+                  {/* <form>
                     <div className="row g-xl-4 g-3">
                       <div className="col-lg-4 col-md-6 col-sm-4 col-6">
                         <div className="color-select-wrap">
@@ -226,7 +221,7 @@ const ProductDetails = () => {
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </form> */}
                   <div className="btn-box">
                     <button
                       id="addToCart"
@@ -315,62 +310,30 @@ const ProductDetails = () => {
                 tabIndex={0}
               >
                 <div className="product-dscr">
-                  <p>
-                    Shank porchetta anim ham in esse. Duis swine mollit
-                    incididunt, quis pork belly rump ut ball tip venison strip
-                    steak pancetta proident. Ground roun duis beef, eu sunt non
-                    dolor esse capicola shoulder strip steak. Ut fatback chuck
-                    minim exercitation kielbasa. Cupidatat nostrud prosciutto
-                    corned beefdgf meatball sausage lorem.Ground round jowl pig,
-                    short ribs turducken cillum labore aliqua bacon ea doner
-                    anim esse. Jerky laboris id, fatback ut gfjb Filet mignon
-                    corned beef laboris ipsum porchetta beef irure dolor
-                    fatback. Pariatur cupim occaecat short ribs
-                  </p>
-                  <p>
-                    consectetur, venison ipsum flank hamburger bacon tri-tip. Eu
-                    duis est cupidatat prosciutto alcatra, consectetur aute
-                    velit shoulder shankle ham ho Cillum deserunt velit dolor,
-                    beef ribs excepteur hamburger flank occaecat. Qui dolor
-                    flank picanha t-bone lorem
-                  </p>
                   <div className="row">
                     <div className="col-lg-4 col-md-6">
                       <div className="part-img">
                         <img
-                          src="assets/images/product-dscr-img.jpg"
-                          alt="Image"
+                          src={mainProduct.img[0]}
+                          alt="Product"
+                          style={{
+                            height: 450,
+                            width: 400,
+                            objectFit: "contain",
+                          }}
+                          className="img-fluid"
                         />
                       </div>
                     </div>
                     <div className="col-lg-8 col-md-6">
-                      <p className="mt-0">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmodt tempor incididunt ut labore et dolore
-                        magna aliqua. Quis ipsum vcdisse ultrices gravida. Risus
-                        commodo viverra maecenas accumsan lacus Lorem ipsum
-                        dolor sit amet, consectetur adipiscing elit,
-                      </p>
-                      <p>
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Quis ipsum suspendisse ultrices gravida.
-                        Risus commodo viverra maecenas accumsan lacus vel
-                        facilisis.
-                      </p>
+                      <div
+                        className="d-flex justify-content-center align-items-center"
+                        style={{ height: 600 }}
+                      >
+                        <p> {mainProduct.fullDescription}</p>
+                      </div>
                     </div>
                   </div>
-                  <p>
-                    Shank porchetta anim ham in esse. Duis swine mollit
-                    incididunt, quis pork belly rump ut ball tip venison strip
-                    steak pancetta proident. Ground roun duis beef, eu sunt non
-                    dolor esse capicola shoulder strip steak. Ut fatback chuck
-                    minim exercitation kielbasa. Cupidatat nostrud prosciutto
-                    corned beefdgf meatball sausage lorem.Ground round jowl pig,
-                    short ribs turducken cillum labore aliqua bacon ea doner
-                    anim esse. Jerky laboris id, fatback ut gfjb Filet mignon
-                    corned beef laboris ipsum porchetta beef irure dolor
-                    fatback. Pariatur cupim occaecat short ribs
-                  </p>
                 </div>
               </div>
               <div

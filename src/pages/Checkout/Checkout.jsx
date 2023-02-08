@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 import {
   add_item,
   delete_cart,
@@ -36,7 +38,50 @@ const Checkout = () => {
   }, [total]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const initialInfo = { name: "", email: "", phone: "", address: "" };
 
+  console.log(getState);
+
+  const [bookingInfo, setBookingInfo] = useState(initialInfo);
+
+  const handleOnBlur = (e) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const newValue = { ...bookingInfo };
+
+    newValue[field] = value;
+    setBookingInfo(newValue);
+  };
+  const MySwal = withReactContent(Swal);
+  // Handle Product submit
+  const handleModal = (e) => {
+    const orders = {
+      ...bookingInfo,
+      getState,
+    };
+    console.log("orders", orders);
+    fetch("http://localhost:5000/api/order", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(orders),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        MySwal.fire({
+          icon: "success",
+          title: "Order successfully done",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
+
+    e.preventDefault();
+    navigate("/");
+  };
+  console.log("final", bookingInfo);
   return (
     <div>
       <div className="tab-section py-120">
@@ -107,7 +152,7 @@ const Checkout = () => {
                               required
                             />
                           </div>
-                          <div className="form-col-5">
+                          {/* <div className="form-col-5">
                             <select
                               name="country"
                               required
@@ -425,7 +470,7 @@ const Checkout = () => {
                               placeholder="Town/City"
                               required
                             />
-                          </div>
+                          </div> */}
                           <div className="form-col-10">
                             <input
                               type="text"
@@ -434,7 +479,7 @@ const Checkout = () => {
                               required
                             />
                           </div>
-                          <div className="form-col-5">
+                          {/* <div className="form-col-5">
                             <input
                               type="text"
                               className="form-control"
@@ -555,7 +600,7 @@ const Checkout = () => {
                               placeholder="Notes about your order, e.g. special notes for delivery"
                               defaultValue={""}
                             />
-                          </div>
+                          </div> */}
                         </form>
                       </div>
                     </div>
