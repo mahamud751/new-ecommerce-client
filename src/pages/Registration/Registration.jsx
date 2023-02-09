@@ -100,8 +100,6 @@ const Registration = () => {
               className="infoForm authForm"
               onSubmit={handleSubmit(handleSignUp)}
             >
-              {/* <img src={Logo} alt="" /> */}
-
               <div className="form">
                 <input
                   type="text"
