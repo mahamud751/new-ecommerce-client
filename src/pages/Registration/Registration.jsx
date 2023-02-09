@@ -1,24 +1,24 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-<<<<<<< HEAD
+
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useToken from "../../hooks/useToken";
 import toast from "react-hot-toast";
 import "./Registration.css";
-=======
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthProvider";
-import useToken from "../../hooks/useToken";
-import toast from "react-hot-toast";
->>>>>>> aff3861c6b4b0d958cf61b109f4369074b05c0d9
 const Registration = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser, updateUser } = useContext(AuthContext);
+  const {
+    createUser,
+    updateUser,
+    signInWithGoogle,
+    signInWithFacebook,
+    verifyEmail,
+  } = useContext(AuthContext);
   const [signUpError, setSignUPError] = useState("");
   const [createdUserEmail, setCreatedUserEmail] = useState("");
   const [token] = useToken(createdUserEmail);
@@ -41,6 +41,7 @@ const Registration = () => {
         updateUser(userInfo)
           .then(() => {
             saveUser(data.name, data.email);
+            verifyEmail();
             navigate("/");
           })
           .catch((err) => console.log(err));
@@ -50,7 +51,23 @@ const Registration = () => {
         setSignUPError(error.message);
       });
   };
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+  const handleFacebookSignIn = () => {
+    signInWithFacebook()
+      .then((result) => {
+        const user = result.user;
 
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
   const saveUser = (name, email, password) => {
     const user = { name, email, password };
     fetch("http://localhost:5000/api/user", {
@@ -67,7 +84,6 @@ const Registration = () => {
   };
   return (
     <div>
-<<<<<<< HEAD
       <div className="Auth">
         <div className="row">
           <div className="col-md-12 right">
@@ -135,10 +151,16 @@ const Registration = () => {
             </form>
             <span className="devider">or</span>
             <div className="social-login-box">
-              <button className="def-btn btn-fb w-100">
+              <button
+                className="def-btn btn-fb w-100"
+                onClick={handleFacebookSignIn}
+              >
                 Sign Up with your facebook
               </button>
-              <button className="def-btn btn-gl w-100 mt-3">
+              <button
+                className="def-btn btn-gl w-100 mt-3"
+                onClick={handleGoogleSignIn}
+              >
                 Sign Up with your google+
               </button>
             </div>
@@ -150,89 +172,6 @@ const Registration = () => {
               <div className="d-flex">
                 <p className="me-2">Already have an account? </p>
                 <Link to={"/login"}>Sign in</Link>
-=======
-      <div className="register py-120">
-        <div className="container">
-          <div className="row justify-content-around">
-            <div className="col-xl-10 col-md-12">
-              <div className="author-area">
-                <h2>Become an Author</h2>
-                <p>
-                  There are no enrollment fees or shipping quotas. Simp vide
-                  your contact information, create a user ID and word.
-                </p>
-                <form
-                  className="login-form"
-                  onSubmit={handleSubmit(handleSignUp)}
-                >
-                  <input
-                    type="text"
-                    placeholder="Name"
-                    {...register("name", {
-                      required: "Name is Required",
-                    })}
-                    className="input input-bordered w-full max-w-xs"
-                  />
-                  {errors.name && (
-                    <p className="text-red-500">{errors.name.message}</p>
-                  )}
-                  <input
-                    type="email"
-                    placeholder="Username or Email"
-                    {...register("email", {
-                      required: true,
-                    })}
-                    className="input input-bordered w-full max-w-xs"
-                  />
-                  {errors.email && (
-                    <p className="text-red-500">{errors.email.message}</p>
-                  )}
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    {...register("password", {
-                      required: "Password is required",
-                      minLength: {
-                        value: 6,
-                        message: "Password must be 6 characters long",
-                      },
-                      pattern: {
-                        value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
-                        message:
-                          "Password must have uppercase, number and special characters",
-                      },
-                    })}
-                    className="input input-bordered w-full max-w-xs"
-                  />
-                  {errors.password && (
-                    <p className="text-red-500">{errors.password.message}</p>
-                  )}
-                  <div className="form-check">
-                    <input
-                      className="form-check-input shipping-check"
-                      type="checkbox"
-                      name="shippingMode"
-                      id="agreeToTerm"
-                    />
-                    <span className="sub-input">
-                      <i className="fa-regular fa-check" />
-                    </span>
-                    {/* <label className="form-check-label" htmlFor="agreeToTerm">
-                      Agree to the <a href="#">Terms and Conditions</a>
-                    </label> */}
-                  </div>
-                  <button className="def-btn btn-border">Register</button>
-                </form>
-                <span className="devider">or</span>
-                <div className="social-login-box">
-                  <button className="def-btn btn-fb">
-                    Sign Up with your facebook
-                  </button>
-                  <button className="def-btn btn-gl">
-                    Sign Up with your google+
-                  </button>
-                </div>
->>>>>>> aff3861c6b4b0d958cf61b109f4369074b05c0d9
               </div>
             </div>
           </div>

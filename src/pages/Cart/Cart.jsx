@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import useScript from "../../components/Common/Reload";
@@ -57,8 +57,8 @@ const Cart = () => {
 
   const navigate = useNavigate();
   const initialInfo = {
-    firstname: user.displayName,
-    email: user.email,
+    firstname: user ? user.displayName : "",
+    email: user ? user.email : "",
     phone: "",
     address: "",
   };
@@ -320,19 +320,28 @@ const Cart = () => {
                                 </span>
                               </li>
                             </ul>
-                            <button
-                              className="def-btn tab-next-btn"
-                              id="proceedToCheckout"
-                            >
-                              Proceed to checkout{" "}
-                              <i className="fa-light fa-cart-circle-check" />
-                            </button>
+                            {user ? (
+                              <button
+                                className="def-btn tab-next-btn"
+                                id="proceedToCheckout"
+                              >
+                                Proceed to checkout{" "}
+                                <i className="fa-light fa-cart-circle-check" />
+                              </button>
+                            ) : (
+                              <Link to={"/login"}>
+                                <button className="def-btn btn-border w-100">
+                                  To Continue Please Login first
+                                </button>
+                              </Link>
+                            )}
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
                 <div className="single-tab" id="checkOutTab">
                   <div className="row">
                     <div className="col-xl-8 col-lg-7 col-md-6">
@@ -345,7 +354,7 @@ const Cart = () => {
                               className="form-control"
                               name="firstname"
                               onBlur={handleOnBlur}
-                              defaultValue={user.displayName}
+                              defaultValue={user ? user.displayName : ""}
                               required
                             />
                           </div>
@@ -357,7 +366,7 @@ const Cart = () => {
                               placeholder="Email Address"
                               name="email"
                               onBlur={handleOnBlur}
-                              defaultValue={user.email}
+                              defaultValue={user ? user.email : ""}
                               required
                             />
                           </div>
@@ -368,7 +377,6 @@ const Cart = () => {
                               placeholder="Phone"
                               name="phone"
                               onBlur={handleOnBlur}
-                              defaultValue={""}
                               required
                             />
                           </div>
@@ -698,7 +706,6 @@ const Cart = () => {
                               placeholder="Address"
                               name="address"
                               onBlur={handleOnBlur}
-                              defaultValue={""}
                               required
                             />
                           </div>
@@ -1068,7 +1075,7 @@ const Cart = () => {
                     </div>
                   </div>
                 </div>
-                ;
+
                 <div className="single-tab" id="orderCompletedTab">
                   <div className="check-icon">
                     <svg

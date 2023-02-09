@@ -63,6 +63,41 @@ const Navbar = () => {
           />
         </div>
       </div>
+      <div className="revel-header-mobile-sidebar side-info">
+        <div className="revel-header-mobile-sidebar-inner">
+          <div className="revel-header-mobile-sidebar-top text-center pb-35">
+            <div className="revel-header-mobile-sidebar-close-btn side-info-close">
+              <button>
+                <span>CLOSE</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={20}
+                  height={20}
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    id="close"
+                    d="M4.216,23.784a.714.714,0,0,0,1.011,0l8.779-8.778,8.782,8.778A.715.715,0,0,0,23.8,22.774L15.017,14,23.8,5.214A.715.715,0,0,0,22.785,4.2l-8.779,8.782L5.223,4.207A.714.714,0,0,0,4.216,5.214L13,14,4.216,22.777a.714.714,0,0,0,0,1.007Z"
+                    transform="translate(-4.008 -3.994)"
+                    fill="#777"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div className="revel-header-mobile-sidebar-logo pb-50">
+            <a href="https://revelwp.codebasket.net/">
+              <img
+                src="../../revelwp.codebasket.net/wp-content/themes/revel/assets/images/logo.png"
+                alt
+              />
+            </a>
+          </div>
+          <div className="revel-header-mobile-sidebar-menu-nav">
+            <div className="revel-mobile-menu" />
+          </div>
+        </div>
+      </div>
       <div className="header-cart-wrap header-cart-wrap-2" id="headerCartWrap">
         <div className="cart-list">
           <div className="title">
@@ -125,285 +160,9 @@ const Navbar = () => {
 
       {/*------------------------------- HEADER CART LIST END -------------------------------*/}
       {/*--------------------------- revel sidebar information area start ----------------------------*/}
-      <div className="revel-header-mobile-sidebar side-info">
-        <div className="revel-header-mobile-sidebar-inner">
-          <div className="revel-header-mobile-sidebar-top text-center pb-35">
-            <div className="revel-header-mobile-sidebar-close-btn side-info-close">
-              <button>
-                <span>CLOSE</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={20}
-                  height={20}
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    id="close"
-                    d="M4.216,23.784a.714.714,0,0,0,1.011,0l8.779-8.778,8.782,8.778A.715.715,0,0,0,23.8,22.774L15.017,14,23.8,5.214A.715.715,0,0,0,22.785,4.2l-8.779,8.782L5.223,4.207A.714.714,0,0,0,4.216,5.214L13,14,4.216,22.777a.714.714,0,0,0,0,1.007Z"
-                    transform="translate(-4.008 -3.994)"
-                    fill="#777"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div className="revel-header-mobile-sidebar-logo pb-50">
-            <a href="https://revelwp.codebasket.net/">
-              <img
-                src="../../revelwp.codebasket.net/wp-content/themes/revel/assets/images/logo.png"
-                alt
-              />
-            </a>
-          </div>
-          <div className="revel-header-mobile-sidebar-menu-nav">
-            <div className="revel-mobile-menu" />
-          </div>
-        </div>
-      </div>
+
       <div className="overlay" />
 
-      {/*------------------------------- PRODUCT QUICK VIEW PANEL END -------------------------------*/}
-      {/*------------------------------- HEADER CART LIST START -------------------------------*/}
-      <div className="header-cart-wrap header-cart-wrap-2" id="headerCartWrap">
-        <div className="cart-list">
-          <div className="title">
-            <h3>Shopping Cart</h3>
-            <button className="cart-close">
-              <i className="fa-regular fa-xmark" />
-            </button>
-          </div>
-          {getState.length ? (
-            <>
-              <ul>
-                {getState.map((pd, index) => {
-                  return (
-                    <li key={index}>
-                      <a href="shop-details.html">
-                        <div className="part-img">
-                          <img src={pd.img[0]} alt="Image" />
-                        </div>
-                        <div className="part-txt">
-                          <span className="name">{pd.name}</span>
-                          <span>
-                            {pd.qtn} <i className="fa-regular fa-xmark" />{" "}
-                            {pd.buyPrice}
-                          </span>
-                        </div>
-                      </a>
-                      <button className="delete-btn">
-                        <i
-                          className="fa-regular fa-trash-can"
-                          onClick={() => handleCart(pd._id)}
-                        />
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="total">
-                <p>
-                  Subtotal: <span>{price}</span>
-                </p>
-              </div>
-              <div className="btn-box">
-                <Link to={"/cart"} className="def-btn">
-                  <a className="def-btn">View Cart</a>
-                </Link>
-
-                <a href="#" className="def-btn">
-                  Checkout
-                </a>
-              </div>
-            </>
-          ) : (
-            <div>
-              {" "}
-              <p style={{ fontSize: 22, padding: 10 }}>Your cart is empty</p>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/*------------------------------- HEADER CART LIST END -------------------------------*/}
-      {/*--------------------------- revel sidebar information area start ----------------------------*/}
-      <div className="revel-header-mobile-sidebar side-info">
-        <div className="revel-header-mobile-sidebar-inner">
-          <div className="revel-header-mobile-sidebar-top text-center pb-35">
-            <div className="revel-header-mobile-sidebar-close-btn side-info-close">
-              <button>
-                <span>CLOSE</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={20}
-                  height={20}
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    id="close"
-                    d="M4.216,23.784a.714.714,0,0,0,1.011,0l8.779-8.778,8.782,8.778A.715.715,0,0,0,23.8,22.774L15.017,14,23.8,5.214A.715.715,0,0,0,22.785,4.2l-8.779,8.782L5.223,4.207A.714.714,0,0,0,4.216,5.214L13,14,4.216,22.777a.714.714,0,0,0,0,1.007Z"
-                    transform="translate(-4.008 -3.994)"
-                    fill="#777"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
-          <div className="revel-header-mobile-sidebar-logo pb-50">
-            <a href="https://revelwp.codebasket.net/">
-              <img
-                src="../../revelwp.codebasket.net/wp-content/themes/revel/assets/images/logo.png"
-                alt
-              />
-            </a>
-          </div>
-          <div className="revel-header-mobile-sidebar-menu-nav">
-            <div className="revel-mobile-menu" />
-          </div>
-        </div>
-      </div>
-      <div className="overlay" />
-
-      {/*------------------------------- PRODUCT QUICK VIEW PANEL END -------------------------------*/}
-      {/*------------------------------- HEADER CART LIST START -------------------------------*/}
-      <div className="header-cart-wrap header-cart-wrap-2" id="headerCartWrap">
-        <div className="cart-list">
-          <div className="title">
-            <h3>Shopping Cart</h3>
-            <button className="cart-close">
-              <i className="fa-regular fa-xmark" />
-            </button>
-          </div>
-          {getState.length ? (
-            <>
-              <ul>
-                {getState.map((pd, index) => {
-                  return (
-                    <li key={index}>
-                      <a href="shop-details.html">
-                        <div className="part-img">
-                          <img src={pd.img[0]} alt="Image" />
-                        </div>
-                        <div className="part-txt">
-                          <span className="name">{pd.name}</span>
-                          <span>
-                            {pd.qtn} <i className="fa-regular fa-xmark" />{" "}
-                            {pd.buyPrice}
-                          </span>
-                        </div>
-                      </a>
-                      <button className="delete-btn">
-                        <i
-                          className="fa-regular fa-trash-can"
-                          onClick={() => handleCart(pd._id)}
-                        />
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="total">
-                <p>
-                  Subtotal: <span>{price}</span>
-                </p>
-              </div>
-              <div className="btn-box">
-                <Link to={"/cart"}>
-                  <a className="def-btn">View Cart</a>
-                </Link>
-
-                <a href="#" className="def-btn">
-                  Checkout
-                </a>
-              </div>
-            </>
-          ) : (
-            <div>
-              {" "}
-              <p style={{ fontSize: 22, padding: 10 }}>Your cart is empty</p>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/*------------------------------- HEADER CART LIST END -------------------------------*/}
-
-      {/*--------------------------- revel sidebar information area end ----------------------------*/}
-      {/*------------------------------- HEADER WISH LIST START -------------------------------*/}
-      <div className="header-cart-wrap header-cart-wrap-2" id="headerWishWrap">
-        <div className="cart-list">
-          <div className="title">
-            <h3>Wish List</h3>
-            <button className="wish-close">
-              <i className="fa-regular fa-xmark" />
-            </button>
-          </div>
-          <ul>
-            <li>
-              <a href="shop-details.html">
-                <div className="part-img">
-                  <img src="assets/images/feat-product-3.jpg" alt="Image" />
-                </div>
-                <div className="part-txt">
-                  <span className="name">Diamond wedding ring</span>
-                  <span>
-                    1 <i className="fa-regular fa-xmark" /> $5.00
-                  </span>
-                </div>
-              </a>
-              <button className="delete-btn">
-                <i className="fa-regular fa-trash-can" />
-              </button>
-            </li>
-            <li>
-              <a href="shop-details.html">
-                <div className="part-img">
-                  <img src="assets/images/feat-product-2.jpg" alt="Image" />
-                </div>
-                <div className="part-txt">
-                  <span className="name">Living Summer Chair</span>
-                  <span>
-                    1 <i className="fa-regular fa-xmark" /> $5.00
-                  </span>
-                </div>
-              </a>
-              <button className="delete-btn">
-                <i className="fa-regular fa-trash-can" />
-              </button>
-            </li>
-            <li>
-              <a href="shop-details.html">
-                <div className="part-img">
-                  <img src="assets/images/feat-product-10.jpg" alt="Image" />
-                </div>
-                <div className="part-txt">
-                  <span className="name">Wireless Headphone</span>
-                  <span>
-                    1 <i className="fa-regular fa-xmark" /> $5.00
-                  </span>
-                </div>
-              </a>
-              <button className="delete-btn">
-                <i className="fa-regular fa-trash-can" />
-              </button>
-            </li>
-          </ul>
-          <div className="total">
-            <p>
-              Subtotal: <span>$15:00</span>
-            </p>
-          </div>
-          <div className="btn-box">
-            <a href="#" className="def-btn">
-              View Wish List
-            </a>
-            <a href="#" className="def-btn">
-              Add All To Cart
-            </a>
-          </div>
-        </div>
-      </div>
-      {/*------------------------------- HEADER WISH LIST END -------------------------------*/}
-      {/*------------------------------- HEADER SECTION START -------------------------------*/}
       <div className="header header-2">
         <div className="top-header">
           <div className="container">
@@ -510,13 +269,13 @@ const Navbar = () => {
                     <a role="button" className="search-open d-sm-none">
                       <i className="fa-light fa-magnifying-glass" />
                     </a>
-                    <a href="compare.html" className="compare-list-btn">
+                    {/* <a href="compare.html" className="compare-list-btn">
                       <i className="fa-light fa-shuffle" />
                     </a>
                     <a href="#" className="wish-list-btn">
                       <i className="fa-light fa-heart" />
                       <span className="quantity">02</span>
-                    </a>
+                    </a> */}
                     <a href="#" className="cart-list-btn">
                       <i className="fa-light fa-cart-shopping" />
                       <span className="quantity">{getState.length}</span>
@@ -557,7 +316,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-wedding-dress" />
-                                  </span>
+                                  </span>{" "}
                                   Clothing
                                 </h4>
                                 <ul>
@@ -597,7 +356,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-heels" />
-                                  </span>
+                                  </span>{" "}
                                   Shoes
                                 </h4>
                                 <ul>
@@ -640,7 +399,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-watch" />
-                                  </span>
+                                  </span>{" "}
                                   Watches
                                 </h4>
                                 <ul>
@@ -709,7 +468,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-television" />
-                                  </span>
+                                  </span>{" "}
                                   Televisions
                                 </h4>
                                 <ul>
@@ -734,7 +493,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-speaker" />
-                                  </span>
+                                  </span>{" "}
                                   Home Audio
                                 </h4>
                                 <ul>
@@ -759,7 +518,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-refrigerator" />
-                                  </span>
+                                  </span>{" "}
                                   Large Appliances
                                 </h4>
                                 <ul>
@@ -784,7 +543,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-cooking" />
-                                  </span>
+                                  </span>{" "}
                                   Kitchen Appliances
                                 </h4>
                                 <ul>
@@ -814,7 +573,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-air-conditioner" />
-                                  </span>
+                                  </span>{" "}
                                   Cooling &amp; Heating
                                 </h4>
                                 <ul>
@@ -839,7 +598,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-season" />
-                                  </span>
+                                  </span>{" "}
                                   Season Sale
                                 </h4>
                                 <a href="#">
@@ -877,7 +636,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-baby-boy" />
-                                  </span>
+                                  </span>{" "}
                                   Mother &amp; Baby
                                 </h4>
                                 <ul>
@@ -904,7 +663,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-rocking-horse" />
-                                  </span>
+                                  </span>{" "}
                                   Baby Gear
                                 </h4>
                                 <ul>
@@ -931,7 +690,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-baby-dress" />
-                                  </span>
+                                  </span>{" "}
                                   Clothing &amp; Accessories
                                 </h4>
                                 <ul>
@@ -958,7 +717,7 @@ const Navbar = () => {
                                 <h4>
                                   <span>
                                     <i className="flaticon-season" />
-                                  </span>
+                                  </span>{" "}
                                   Season Sale
                                 </h4>
                                 <a href="#">
@@ -1041,103 +800,6 @@ const Navbar = () => {
                             <NavLink to="/cart" className="nav-link">
                               Cart
                             </NavLink>
-                          </li>
-                          <li className="nav-item dropdown">
-                            <a
-                              className="nav-link dropdown-toggle"
-                              href="#"
-                              id="shopDropdown"
-                              role="button"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              Shop
-                            </a>
-                            <ul
-                              className="dropdown-menu"
-                              aria-labelledby="shopDropdown"
-                            >
-                              <li>
-                                <a className="dropdown-item" href="shop.html">
-                                  Shop Left Bar
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="dropdown-item"
-                                  href="shop-right-bar.html"
-                                >
-                                  Shop Right Bar
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="dropdown-item"
-                                  href="shop-details.html"
-                                >
-                                  Shop Details
-                                </a>
-                              </li>
-                            </ul>
-                          </li>
-                          <li className="nav-item dropdown">
-                            <a
-                              className="nav-link dropdown-toggle"
-                              href="#"
-                              id="pageDropdown"
-                              role="button"
-                              data-bs-toggle="dropdown"
-                              aria-expanded="false"
-                            >
-                              PAGES
-                            </a>
-                            <ul
-                              className="dropdown-menu"
-                              aria-labelledby="pageDropdown"
-                            >
-                              <li>
-                                <a
-                                  className="dropdown-item"
-                                  href="account.html"
-                                >
-                                  Account Page
-                                </a>
-                              </li>
-                              <li>
-                                <a className="dropdown-item" href="cart.html">
-                                  Cart Page
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="dropdown-item"
-                                  href="compare.html"
-                                >
-                                  Compare Page
-                                </a>
-                              </li>
-                              <li>
-                                <a className="dropdown-item" href="faq.html">
-                                  FAQ Page
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="dropdown-item"
-                                  href="wishlist.html"
-                                >
-                                  Wishlist
-                                </a>
-                              </li>
-                              <li>
-                                <a
-                                  className="dropdown-item"
-                                  href="register.html"
-                                >
-                                  Register Page
-                                </a>
-                              </li>
-                            </ul>
                           </li>
                           <li className="nav-item">
                             <NavLink to="/blog" className="nav-link">
@@ -1641,124 +1303,59 @@ const Navbar = () => {
             <i className="fa-solid fa-xmark-large" />
           </button>
           <ul className="menu-bar">
-            <li className="logo">
-              <img src="assets/images/Logo.html" alt="Logo" />
-            </li>
+            <Link to={"/"}>
+              <a>
+                <img
+                  src="assets/images/logo1.png"
+                  alt="logo"
+                  className="img-fluid"
+                />
+              </a>
+            </Link>
 
             <li className="nav-item">
               <Link to={"/"}>
                 <a className="nav-link">Home</a>
               </Link>
             </li>
-            <li className="nav-item">
-              <a href="account.html" className="nav-link">
-                Account
-              </a>
-            </li>
+            {user ? (
+              <li className="nav-item">
+                <Link to={"/account"}>
+                  <a className="nav-link">Account</a>
+                </Link>
+              </li>
+            ) : (
+              ""
+            )}
+
+            {user ? (
+              <li className="nav-item">
+                <Link to={"/login"}>
+                  <a className="nav-link">Login / Register</a>
+                </Link>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <a onClick={handleLogOut} className="nav-link">
+                  Logout
+                </a>
+              </li>
+            )}
 
             <li className="nav-item">
-              <a href="register.html" className="nav-link">
-                Login / Register
-              </a>
+              <Link to={"/about"}>
+                <a className="nav-link">About</a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a href="about.html" className="nav-link">
-                About
-              </a>
+              <Link to={"/blog"}>
+                <a className="nav-link">Blog</a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
-                href="#"
-                className="nav-link dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Shop
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <a href="shop.html" className="dropdown-item">
-                    Shop Left Bar
-                  </a>
-                </li>
-                <li>
-                  <a href="shop-right-bar.html" className="dropdown-item">
-                    Shop Right Bar
-                  </a>
-                </li>
-                <li>
-                  <a href="shop-details.html" className="dropdown-item">
-                    Shop Details Page
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item">
-              <a href="faq.html" className="nav-link">
-                FAQ
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                href="#"
-                className="nav-link dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Blog
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <a href="blog.html" className="dropdown-item">
-                    Blog Page
-                  </a>
-                </li>
-                <li>
-                  <a href="blog-details.html" className="dropdown-item">
-                    Blog Details Page
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item">
-              <a href="contact.html" className="nav-link">
-                Contact
-              </a>
-            </li>
-            <li className="nav-item">
-              <a
-                href="#"
-                className="nav-link dropdown-toggle"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Pages
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <a href="cart.html" className="dropdown-item">
-                    Cart Page
-                  </a>
-                </li>
-                <li>
-                  <a href="compare.html" className="dropdown-item">
-                    Compare Page
-                  </a>
-                </li>
-                <li>
-                  <a href="wishlist.html" className="dropdown-item">
-                    Wishlist Page
-                  </a>
-                </li>
-                <li>
-                  <a href="register.html" className="dropdown-item">
-                    Register Page
-                  </a>
-                </li>
-              </ul>
+              <Link to={"/contact"}>
+                <a className="nav-link">Contact</a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -1773,19 +1370,25 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href="cart.html" className="m-nav-link">
-              <i className="fa-light fa-cart-shopping" />
-            </a>
+            <Link to={"/cart"}>
+              <a className="m-nav-link">
+                <i className="fa-light fa-cart-shopping" />
+              </a>
+            </Link>
           </li>
           <li>
-            <a href="index.html" className="center">
-              <i className="fa-light fa-house" />
-            </a>
+            <Link to={"/"}>
+              <a className="center">
+                <i className="fa-light fa-house" />
+              </a>
+            </Link>
           </li>
           <li>
-            <a href="account.html" className="m-nav-link">
-              <i className="fa-light fa-user-large" />
-            </a>
+            <Link to={"/account"}>
+              <a className="m-nav-link">
+                <i className="fa-light fa-user-large" />
+              </a>
+            </Link>
           </li>
           <li>
             <a role="button" data-target="m-main-menu" className="m-nav-link">
