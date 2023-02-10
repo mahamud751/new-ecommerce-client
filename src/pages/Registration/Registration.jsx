@@ -12,7 +12,13 @@ const Registration = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser, updateUser } = useContext(AuthContext);
+  const {
+    createUser,
+    updateUser,
+    signInWithGoogle,
+    signInWithFacebook,
+    verifyEmail,
+  } = useContext(AuthContext);
   const [signUpError, setSignUPError] = useState("");
   const [createdUserEmail, setCreatedUserEmail] = useState("");
   const [token] = useToken(createdUserEmail);
@@ -35,6 +41,7 @@ const Registration = () => {
         updateUser(userInfo)
           .then(() => {
             saveUser(data.name, data.email);
+            verifyEmail();
             navigate("/");
           })
           .catch((err) => console.log(err));
@@ -44,7 +51,23 @@ const Registration = () => {
         setSignUPError(error.message);
       });
   };
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+  const handleFacebookSignIn = () => {
+    signInWithFacebook()
+      .then((result) => {
+        const user = result.user;
 
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
   const saveUser = (name, email, password) => {
     const user = { name, email, password };
     fetch("http://localhost:5000/api/user", {
@@ -77,8 +100,6 @@ const Registration = () => {
               className="infoForm authForm"
               onSubmit={handleSubmit(handleSignUp)}
             >
-              {/* <img src={Logo} alt="" /> */}
-
               <div className="form">
                 <input
                   type="text"
@@ -128,10 +149,16 @@ const Registration = () => {
             </form>
             <span className="devider">or</span>
             <div className="social-login-box">
-              <button className="def-btn btn-fb w-100">
+              <button
+                className="def-btn btn-fb w-100"
+                onClick={handleFacebookSignIn}
+              >
                 Sign Up with your facebook
               </button>
-              <button className="def-btn btn-gl w-100 mt-3">
+              <button
+                className="def-btn btn-gl w-100 mt-3"
+                onClick={handleGoogleSignIn}
+              >
                 Sign Up with your google+
               </button>
             </div>
