@@ -16,7 +16,9 @@ const Navbar = () => {
   const [category, setCategory] = useState([]);
   const getCategory = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/category");
+      const response = await axios.get(
+        "https://korbojoy-server.onrender.com/api/category"
+      );
       setCategory(response.data);
     } catch (error) {
       console.error(error);
@@ -25,7 +27,7 @@ const Navbar = () => {
 
   useEffect(() => {
     getCategory();
-  }, []);
+  }, [category]);
 
   const getState = useSelector((state) => state.cartReducer.cart);
   const [price, setPrice] = React.useState(0);
@@ -46,6 +48,11 @@ const Navbar = () => {
 
   const handleCart = (_id) => {
     dispatch(delete_cart(_id));
+  };
+  const [isToggled, setIsToggled] = useState(false);
+
+  const handleToggle = () => {
+    setIsToggled(!isToggled);
   };
 
   const location = useLocation();
@@ -295,473 +302,29 @@ const Navbar = () => {
               <div className="col-xxl-3 col-xl-3 col-lg-4">
                 <div className="all-department">
                   <span>all Departments</span>
-                  <button className="category-list-close">
+                  <button
+                    className="category-list-close"
+                    onClick={handleToggle}
+                  >
                     <i className="fa-light fa-bars" />
                   </button>
                   <div className="banner">
-                    <div className="category-list">
-                      <ul>
-                        <li className="category-item has-sub">
-                          <a href="#">
-                            <div className="icon">
-                              <span>
-                                <i className="fa-thin fa-user-tie-hair-long" />
-                              </span>
-                            </div>
-                            <span>Women's Fashion</span>
-                          </a>
-                          <div className="category-sub-menu bg-1">
-                            <div className="row g-4">
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-wedding-dress" />
-                                  </span>{" "}
-                                  Clothing
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Dresses</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Jeggings</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Kurtis</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Palazzo Pants &amp; Culottes</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Pants</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Shapewear</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Skirts</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Tops</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">T-Shirts</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Tunics</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-heels" />
-                                  </span>{" "}
-                                  Shoes
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Ballet Flats</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Pumps</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Closed-Toe Wedges</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Fashion Boots</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Flat Sandals</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Flip Flops</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Heeled Sandals</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">House Slippers</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Slip-Ons</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Sneakers</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Wedge Sandals</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-watch" />
-                                  </span>{" "}
-                                  Watches
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Fashion</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Casual</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Business</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Sports</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Accessories</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="category-item">
-                          <a href="#">
-                            <div className="icon">
-                              <span>
-                                <i className="fa-thin fa-user-tie-hair" />
-                              </span>
-                            </div>
-                            <span>Men's Fashion</span>
-                          </a>
-                        </li>
-                        <li className="category-item">
-                          <a href="#">
-                            <div className="icon">
-                              <span>
-                                <i className="fa-thin fa-camera" />
-                              </span>
-                            </div>
-                            <span>Photography</span>
-                          </a>
-                        </li>
-                        <li className="category-item">
-                          <a href="#">
-                            <div className="icon">
-                              <span>
-                                <i className="fa-thin fa-watch-smart" />
-                              </span>
-                            </div>
-                            <span>Watches &amp; Accessories</span>
-                          </a>
-                        </li>
-                        <li className="category-item has-sub">
-                          <a href="#">
-                            <div className="icon">
-                              <span>
-                                <i className="fa-thin fa-tv-retro" />
-                              </span>
-                            </div>
-                            <span>TV &amp; Home Appliances</span>
-                          </a>
-                          <div className="category-sub-menu">
-                            <div className="row g-4">
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-television" />
-                                  </span>{" "}
-                                  Televisions
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Smart Televisions</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">LED Televisions</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">OLED Televisions</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Other Televisions</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Mini Televisions</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-speaker" />
-                                  </span>{" "}
-                                  Home Audio
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Sondbars</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Home Entertainment</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Portable Players</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Fashion Boots</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Live Sound</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-refrigerator" />
-                                  </span>{" "}
-                                  Large Appliances
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Refrigerators</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Freezers</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Washing Machines</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Microwave Oven</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Electric Oven</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-cooking" />
-                                  </span>{" "}
-                                  Kitchen Appliances
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Rice Cooker</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Blender, Mixer &amp; Grinder</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Electric Kettle</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Juicer &amp; Fruit Extraction
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Fryer</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Coffee Machine</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-air-conditioner" />
-                                  </span>{" "}
-                                  Cooling &amp; Heating
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Air Conditioner</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Air Coolers</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Air Purifiers</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Dehumidifiers</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Water Heater</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-season" />
-                                  </span>{" "}
-                                  Season Sale
-                                </h4>
-                                <a href="#">
-                                  <img
-                                    src="assets/images/mega-menu-bg-2.jpg"
-                                    alt="Image"
-                                  />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="category-item">
-                          <a href="#">
-                            <div className="icon">
-                              <span>
-                                <i className="fa-thin fa-backpack" />
-                              </span>
-                            </div>
-                            <span>Bags &amp; Shoes</span>
-                          </a>
-                        </li>
-                        <li className="category-item has-sub">
-                          <a href="#">
-                            <div className="icon">
-                              <span>
-                                <i className="fa-thin fa-teddy-bear" />
-                              </span>
-                            </div>
-                            <span>Toys , Kids &amp; Babies</span>
-                          </a>
-                          <div className="category-sub-menu">
-                            <div className="row g-4">
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-baby-boy" />
-                                  </span>{" "}
-                                  Mother &amp; Baby
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Baby &amp; Toddler Foods</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Milk Formula</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Cloth Diapers &amp; Accessories
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Diaper Bags</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Wipes &amp; Holders</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-rocking-horse" />
-                                  </span>{" "}
-                                  Baby Gear
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Baby Walkers</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Backpacks &amp; Carriers</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Strollers</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      Swings, Jumpers &amp; Bouncers
-                                    </a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Activity Gym &amp; Playmats</a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="col-lg-4">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-baby-dress" />
-                                  </span>{" "}
-                                  Clothing &amp; Accessories
-                                </h4>
-                                <ul>
-                                  <li>
-                                    <a href="#">Girls Clothing</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Girls Shoes</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Boys Clothing</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">Maternity Wear</a>
-                                  </li>
-                                  <li>
-                                    <a href="#">
-                                      New Born Unisex (0 - 6 months)
-                                    </a>
-                                  </li>
-                                </ul>
-                              </div>
-                              <div className="col-lg-12">
-                                <h4>
-                                  <span>
-                                    <i className="flaticon-season" />
-                                  </span>{" "}
-                                  Season Sale
-                                </h4>
-                                <a href="#">
-                                  <img
-                                    src="assets/images/mega-menu-bg-3.jpg"
-                                    alt="Image"
-                                  />
-                                </a>
-                              </div>
-                            </div>
-                          </div>
-                        </li>
-                        <li className="category-item">
-                          <a href="#">
-                            <div className="icon">
-                              <span>
-                                <i className="fa-thin fa-headphones-simple" />
-                              </span>
-                            </div>
-                            <span>Headphone</span>
-                          </a>
-                        </li>
-                        <li className="category-item">
-                          <a href="#">
-                            <div className="icon">
-                              <span>
-                                <i className="fa-thin fa-baseball-bat-ball" />
-                              </span>
-                            </div>
-                            <span>Sports &amp; Outdoor</span>
-                          </a>
-                        </li>
-                        <li className="category-item">
-                          <a href="#">
-                            <div className="icon">
-                              <span>
-                                <i className="fa-thin fa-shuffle" />
-                              </span>
-                            </div>
-                            <span>Other</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+                    {isToggled && (
+                      <div
+                        className="category-item"
+                        style={{ background: "white", color: "black" }}
+                      >
+                        <ul>
+                          {category.map((pd) => (
+                            <li>
+                              <Link to={`/category/${pd._id}`} className="p-3">
+                                {pd.name}{" "}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

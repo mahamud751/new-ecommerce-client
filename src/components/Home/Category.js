@@ -9,7 +9,7 @@ const Category = () => {
   // const { data: categories = [], refetch } = useQuery({
   //   queryKey: ["categories"],
   //   queryFn: async () => {
-  //     const res = await fetch("http://localhost:5000/api/category");
+  //     const res = await fetch("https://korbojoy-server.onrender.com/api/category");
   //     const data = await res.json();
   //     return data;
   //   },
@@ -18,7 +18,7 @@ const Category = () => {
   const dispatch = useDispatch();
   const fetchProducts = async () => {
     const response = await axios
-      .get("http://localhost:5000/api/category")
+      .get("https://korbojoy-server.onrender.com/api/category")
       .catch((err) => {});
     dispatch(setCategory(response.data));
   };

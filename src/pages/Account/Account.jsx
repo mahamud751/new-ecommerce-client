@@ -31,7 +31,10 @@ const Account = () => {
       ...user,
     };
     try {
-      await axios.put(`http://localhost:5000/api/user/${emailId}`, newPost);
+      await axios.put(
+        `https://korbojoy-server.onrender.com/api/user/${emailId}`,
+        newPost
+      );
     } catch (error) {}
   };
   console.log(users);

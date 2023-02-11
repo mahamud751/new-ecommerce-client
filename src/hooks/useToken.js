@@ -4,7 +4,7 @@ const useToken = (email) => {
   const [token, setToken] = useState("");
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:5000/api/user/jwt?email=${email}`)
+      fetch(`https://korbojoy-server.onrender.com/api/user/jwt?email=${email}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.accessToken) {

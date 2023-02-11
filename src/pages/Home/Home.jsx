@@ -2,6 +2,7 @@ import React from "react";
 import Feature from "../../components/Common/Feature";
 import useScript from "../../components/Common/Reload";
 import Banner from "../../components/Home/Banner";
+
 import Blog from "../../components/Home/Blog";
 import Category from "../../components/Home/Category";
 import FeaturedProducts from "../../components/Home/FeaturedProducts";
@@ -10,6 +11,7 @@ const Home = () => {
   useScript("/assets/js/main.js");
   return (
     <div>
+      {/* <Banners /> */}
       <Banner />
       {/*------------------------------- POPULAR CATEGORIES SECTION START -------------------------------*/}
 

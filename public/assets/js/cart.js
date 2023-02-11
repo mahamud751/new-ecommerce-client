@@ -12,7 +12,7 @@
         .removeClass("active");
     });
     $("#proceedToCheckout").on("click", function () {
-      $(this).prop("disabled", true);
+      $(this).prop("active", true);
       $("#checkOutTab").addClass("active").siblings().removeClass("active");
       $(".single-nav.active")
         .next(".single-nav")

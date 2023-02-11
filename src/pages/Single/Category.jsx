@@ -19,14 +19,14 @@ const Category = () => {
   const dispatch = useDispatch();
   const fetchProducts = async () => {
     const response = await axios
-      .get(`http://localhost:5000/api/category/${id}`)
+      .get(`https://korbojoy-server.onrender.com/api/category/${id}`)
       .catch((err) => {});
     dispatch(setCategory(response.data.products));
   };
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [category]);
 
   const price = category.map((pd) => pd.buyPrice);
   const handleSort = (e) => {
