@@ -3,15 +3,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { add_item } from "../../redux/actions/cartAction";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { setCategory } from "../../redux/actions/categoryAction";
 import Feature from "../../components/Common/Feature";
 
 import useScript from "../../components/Common/Reload";
+import toast, { Toaster } from "react-hot-toast";
+
+const notify = () => toast.success("Successfully add your item!");
 const Category = () => {
   useScript("/assets/js/shop-page.js");
-  const MySwal = withReactContent(Swal);
+
   let { id } = useParams();
 
   const category = useSelector((state) => state.allCategory.category);
@@ -38,7 +39,7 @@ const Category = () => {
 
   const handleAddItem = (e) => {
     dispatch(add_item(e));
-    MySwal.fire("Good job!", "successfully added", "success");
+    notify();
   };
   return (
     <div>
@@ -164,6 +165,7 @@ const Category = () => {
                       </li>
                     </ul>
                   </div>
+
                   <div className="sidebar-box">
                     <h3 className="sidebar-title">By Price</h3>
                     <div className="price-filter-wrap">
@@ -534,6 +536,7 @@ const Category = () => {
         {/*------------------------------- SHOP SECTION END -------------------------------*/}
         {/*------------------------------- FEATURES SECTION START -------------------------------*/}
         <Feature />
+        <Toaster position="bottom-left" reverseOrder={false} />
         {/*------------------------------- FEATURES SECTION END -------------------------------*/}
         {/* Mirrored from revelecommerce.codebasket.net/revel/shop.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Jan 2023 08:50:56 GMT */}
       </div>

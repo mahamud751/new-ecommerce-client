@@ -214,7 +214,7 @@ const Cart = () => {
                                       </span>
                                     </td>
                                     <td>
-                                      <button className="cart-delete">
+                                      <button className="">
                                         <i
                                           className="fa-light fa-trash-can"
                                           onClick={() =>
@@ -243,9 +243,9 @@ const Cart = () => {
                     <a href="shop.html" className="def-btn">
                       Continue Shopping
                     </a>
-                    <button className="def-btn" id="cartUpdate" disabled>
+                    {/* <button className="def-btn" id="cartUpdate" disabled>
                       Update Cart
-                    </button>
+                    </button> */}
                   </div>
                   <div className="cart-total-panel">
                     <h3 className="title">Cart Total</h3>

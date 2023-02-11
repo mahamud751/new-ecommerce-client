@@ -3,15 +3,15 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { add_item } from "../../redux/actions/cartAction";
 import { setProducts } from "../../redux/actions/productAction";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
 import { Link } from "react-router-dom";
 
 import Rating from "react-rating";
+import toast, { Toaster } from "react-hot-toast";
 
+const notify = () => toast.success("Successfully add your item!");
 const FeaturedProducts = () => {
   const products = useSelector((state) => state.allProducts.products);
-  const MySwal = withReactContent(Swal);
+
   const dispatch = useDispatch();
   const fetchProducts = async () => {
     const response = await axios
@@ -32,7 +32,7 @@ const FeaturedProducts = () => {
 
   const handleAddItem = (e) => {
     dispatch(add_item(e));
-    MySwal.fire("Good job!", "successfully added", "success");
+    notify();
   };
 
   return (
@@ -46,6 +46,7 @@ const FeaturedProducts = () => {
                 <div className="col-lg-2 col-md-2 col-6">
                   <h2 className="title">Flash Deal!</h2>
                 </div>
+                <Toaster position="bottom-left" reverseOrder={false} />
                 <div className="col-lg-8 col-md-8 countdown-col">
                   <div className="countdown-wrap d-flex">
                     <h3>Ending Soon...</h3>
