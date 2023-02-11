@@ -78,11 +78,6 @@
     /*---------------------------
         Main Category List In Inner Pages
         ---------------------------*/
-    $(".category-list-btn").on("click", function () {
-      $(this).toggleClass("clicked");
-      $(this).children("i").toggleClass("fa-times fa-bars");
-      $(".category-list-2").slideToggle(300);
-    });
 
     /*---------------------------
         Niceselect Plugin Init
