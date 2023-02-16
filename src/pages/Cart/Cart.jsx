@@ -81,6 +81,7 @@ const Cart = () => {
     const orders = {
       ...bookingInfo,
       getState,
+      grandPrice,
     };
     console.log("orders", orders);
     fetch("https://korbojoy-server.onrender.com/api/order", {

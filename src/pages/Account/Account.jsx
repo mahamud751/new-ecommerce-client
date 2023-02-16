@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
@@ -7,7 +7,14 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const Account = () => {
   const { user, logOut } = useContext(AuthContext);
   const emailId = user.email;
+  const [bookings, setBooking] = useState([]);
 
+  useEffect(() => {
+    const url = `https://korbojoy-server.onrender.com/api/order/s/?email=${emailId}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setBooking(data));
+  }, [emailId]);
   const navigate = useNavigate();
   const handleLogOut = () => {
     logOut()
@@ -38,6 +45,7 @@ const Account = () => {
     } catch (error) {}
   };
   console.log(users);
+  console.log(bookings);
   return (
     <div>
       <div className="account py-120">
@@ -325,161 +333,43 @@ const Account = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>
-                              <span className="invoice-id">INV-012-345</span>
-                            </td>
-                            <td>
-                              <span className="date">Mar 15, 2022</span>
-                            </td>
-                            <td>
-                              <div className="details">
-                                <a
-                                  href="shop-details.html"
-                                  className="product-name"
-                                >
-                                  Revel eCommerce-Multi vendor
-                                </a>
-                                <span className="invoice">
-                                  Invoice:{" "}
-                                  <button
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
-                                  >
-                                    48452022
-                                  </button>
+                          {bookings.map((booking) => (
+                            <tr>
+                              <td>
+                                <span className="invoice-id">INV-012-345</span>
+                              </td>
+                              <td>
+                                <span className="date">
+                                  {booking.createdAt.slice(0, 10)}
                                 </span>
-                              </div>
-                            </td>
-                            <td>
-                              <span className="amount">$256</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span className="invoice-id">INV-012-345</span>
-                            </td>
-                            <td>
-                              <span className="date">Mar 15, 2022</span>
-                            </td>
-                            <td>
-                              <div className="details">
-                                <a
-                                  href="shop-details.html"
-                                  className="product-name"
-                                >
-                                  Revel eCommerce-Multi vendor
-                                </a>
-                                <span className="invoice">
-                                  Invoice:{" "}
-                                  <button
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
+                              </td>
+                              <td>
+                                <div className="details">
+                                  <a
+                                    href="shop-details.html"
+                                    className="product-name"
                                   >
-                                    48452022
-                                  </button>
+                                    Revel eCommerce-Multi vendor
+                                  </a>
+                                  <span className="invoice">
+                                    Invoice:{" "}
+                                    <button
+                                      type="button"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#invoiceModal"
+                                    >
+                                      48452022
+                                    </button>
+                                  </span>
+                                </div>
+                              </td>
+                              <td>
+                                <span className="amount">
+                                  ${booking.grandPrice}
                                 </span>
-                              </div>
-                            </td>
-                            <td>
-                              <span className="amount">$256</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span className="invoice-id">INV-012-345</span>
-                            </td>
-                            <td>
-                              <span className="date">Mar 15, 2022</span>
-                            </td>
-                            <td>
-                              <div className="details">
-                                <a
-                                  href="shop-details.html"
-                                  className="product-name"
-                                >
-                                  Revel eCommerce-Multi vendor
-                                </a>
-                                <span className="invoice">
-                                  Invoice:{" "}
-                                  <button
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
-                                  >
-                                    48452022
-                                  </button>
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <span className="amount">$256</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span className="invoice-id">INV-012-345</span>
-                            </td>
-                            <td>
-                              <span className="date">Mar 15, 2022</span>
-                            </td>
-                            <td>
-                              <div className="details">
-                                <a
-                                  href="shop-details.html"
-                                  className="product-name"
-                                >
-                                  Revel eCommerce-Multi vendor
-                                </a>
-                                <span className="invoice">
-                                  Invoice:{" "}
-                                  <button
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
-                                  >
-                                    48452022
-                                  </button>
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <span className="amount">$256</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span className="invoice-id">INV-012-345</span>
-                            </td>
-                            <td>
-                              <span className="date">Mar 15, 2022</span>
-                            </td>
-                            <td>
-                              <div className="details">
-                                <a
-                                  href="shop-details.html"
-                                  className="product-name"
-                                >
-                                  Revel eCommerce-Multi vendor
-                                </a>
-                                <span className="invoice">
-                                  Invoice:{" "}
-                                  <button
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
-                                  >
-                                    48452022
-                                  </button>
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <span className="amount">$256</span>
-                            </td>
-                          </tr>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>

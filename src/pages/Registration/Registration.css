@@ -11,9 +11,20 @@
     align-items: center;
 }
 
+.sign_in_all {
+    background: linear-gradient(45deg, #343a40 0 50%, #0c1117 50% 100%)
+}
+
 .registration_img_main {
     width: 220px;
     margin: 60px 0;
+}
+
+.log_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
 }
 
 .user {
@@ -132,4 +143,9 @@
     .registration {
         width: 100%;
     }
+
+    .log_img {
+        display: none;
+    }
+
 }
