@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Footer = () => {
+  const { user } = useContext(AuthContext);
   const location = useLocation();
   if (location.pathname === "/register" || location.pathname === "/login") {
     return null;
@@ -83,12 +85,15 @@ const Footer = () => {
                       <li>
                         <NavLink to="/return">Return Policies</NavLink>
                       </li>
-                      <li>
-                        <a href="cart.html">My Order</a>
-                      </li>
-                      <li>
-                        <a href="wishlist.html">Wishlist</a>
-                      </li>
+                      {user ? (
+                        <li>
+                          <NavLink to="/account">My Order</NavLink>
+                        </li>
+                      ) : (
+                        <li>
+                          <NavLink to="/login">My Order</NavLink>
+                        </li>
+                      )}
                     </ul>
                   </div>
                 </div>
