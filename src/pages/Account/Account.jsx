@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
@@ -7,7 +7,14 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const Account = () => {
   const { user, logOut } = useContext(AuthContext);
   const emailId = user.email;
+  const [bookings, setBooking] = useState([]);
 
+  useEffect(() => {
+    const url = `https://korbojoy-server.onrender.com/api/order/s/?email=${emailId}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => setBooking(data));
+  }, [emailId]);
   const navigate = useNavigate();
   const handleLogOut = () => {
     logOut()
@@ -31,10 +38,18 @@ const Account = () => {
       ...user,
     };
     try {
-      await axios.put(`http://localhost:5000/api/user/${emailId}`, newPost);
+      await axios.put(
+        `https://korbojoy-server.onrender.com/api/user/${emailId}`,
+        newPost
+      );
     } catch (error) {}
   };
+  const handlePrint = (e) => {
+    e.preventDefault();
+    window.print();
+  };
   console.log(users);
+  console.log(bookings);
   return (
     <div>
       <div className="account py-120">
@@ -86,7 +101,7 @@ const Account = () => {
                     </span>{" "}
                     <span className="txt">Purchase History</span>
                   </button>
-                  <button
+                  {/* <button
                     className="nav-link"
                     id="v-pills-conversation-tab"
                     data-bs-toggle="pill"
@@ -100,8 +115,8 @@ const Account = () => {
                       <i className="fa-duotone fa-messages" />
                     </span>{" "}
                     <span className="txt">Conversation</span>
-                  </button>
-                  <button
+                  </button> */}
+                  {/* <button
                     className="nav-link"
                     id="v-pills-wallet-tab"
                     data-bs-toggle="pill"
@@ -115,7 +130,7 @@ const Account = () => {
                       <i className="fa-duotone fa-wallet" />
                     </span>{" "}
                     <span className="txt">My Wallet</span>
-                  </button>
+                  </button> */}
                   <button
                     className="nav-link"
                     id="v-pills-profile-tab"
@@ -322,161 +337,222 @@ const Account = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td>
-                              <span className="invoice-id">INV-012-345</span>
-                            </td>
-                            <td>
-                              <span className="date">Mar 15, 2022</span>
-                            </td>
-                            <td>
-                              <div className="details">
-                                <a
-                                  href="shop-details.html"
-                                  className="product-name"
-                                >
-                                  Revel eCommerce-Multi vendor
-                                </a>
-                                <span className="invoice">
-                                  Invoice:{" "}
-                                  <button
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
-                                  >
-                                    48452022
-                                  </button>
-                                </span>
+                          {bookings.map((booking) => (
+                            <>
+                              <tr>
+                                <td>
+                                  <span className="invoice-id">
+                                    INV-012-345
+                                  </span>
+                                </td>
+                                <td>
+                                  <span className="date">
+                                    {booking.createdAt.slice(0, 10)}
+                                  </span>
+                                </td>
+                                <td>
+                                  <div className="details">
+                                    <span className="invoice">
+                                      Invoice:{" "}
+                                      <button
+                                        type="button"
+                                        data-bs-toggle="modal"
+                                        data-bs-target={`#invoiceModal${booking._id}`}
+                                      >
+                                        48452022
+                                      </button>
+                                    </span>
+                                  </div>
+                                </td>
+                                <td>
+                                  <span className="amount">
+                                    ${booking.grandPrice}
+                                  </span>
+                                </td>
+                              </tr>
+                              <div
+                                className="invoice-modal modal fade"
+                                id={`invoiceModal${booking._id}`}
+                                tabIndex={-1}
+                                aria-labelledby="invoiceModalLabel"
+                                aria-hidden="true"
+                              >
+                                <div className="modal-dialog modal-dialog-centered modal-xl">
+                                  <div className="modal-content">
+                                    <div className="modal-header">
+                                      <h2
+                                        className="account-title mb-0"
+                                        id="invoiceModalLabel"
+                                      >
+                                        Invoice
+                                      </h2>
+                                      <button
+                                        type="button"
+                                        className="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                      />
+                                    </div>
+                                    <div className="modal-body">
+                                      <div className="invoice-wrap">
+                                        <div className="invoice-top d-flex justify-content-between align-items-center">
+                                          <div className="left">
+                                            <div className="logo">
+                                              <img
+                                                src="assets/images/Logo.html"
+                                                alt="LOGO"
+                                              />
+                                            </div>
+                                            <p>Invoice</p>
+                                          </div>
+                                          <div className="right">
+                                            <table>
+                                              <tbody>
+                                                <tr>
+                                                  <th>Date:</th>
+                                                  <td>
+                                                    {" "}
+                                                    {booking.createdAt.slice(
+                                                      0,
+                                                      10
+                                                    )}
+                                                  </td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Invoice No:</th>
+                                                  <td>IVIP48452022</td>
+                                                </tr>
+                                                <tr>
+                                                  <th>Order No:</th>
+                                                  <td>166779322</td>
+                                                </tr>
+                                              </tbody>
+                                            </table>
+                                          </div>
+                                        </div>
+                                        <div className="invoice-body">
+                                          <div className="details">
+                                            <div className="row">
+                                              <div className="col-sm-6">
+                                                <h3>Bill to</h3>
+                                                <p>
+                                                  <span>
+                                                    {booking.firstname}
+                                                  </span>
+                                                  <span>{booking.address}</span>
+
+                                                  <span>
+                                                    EIN: {booking.phone}
+                                                  </span>
+                                                </p>
+                                              </div>
+                                              <div className="col-sm-6">
+                                                <h3>Supplier</h3>
+                                                <p>
+                                                  <span>Khorshed Alam</span>
+                                                  <span>
+                                                    Ruhul amin Complex,
+                                                    Mokimabad,
+                                                  </span>
+                                                  <span>590573362138</span>
+                                                </p>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <div className="items">
+                                            <div className="table-responsive">
+                                              <table className="table table-borderless">
+                                                <thead>
+                                                  <tr>
+                                                    <th>Item ID</th>
+                                                    <th className="text-center">
+                                                      Qty
+                                                    </th>
+                                                    <th>Description</th>
+                                                    <th className="text-end">
+                                                      Amount
+                                                    </th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  {booking.getState.map(
+                                                    (pd) => {
+                                                      console.log("sss", pd);
+                                                      return (
+                                                        <>
+                                                          {pd.map((item) => (
+                                                            <>
+                                                              <tr>
+                                                                <td>
+                                                                  {item._id}
+                                                                </td>
+                                                                <td className="text-center">
+                                                                  {item.qtn}
+                                                                </td>
+                                                                <td>
+                                                                  {item.name.slice(
+                                                                    0,
+                                                                    10
+                                                                  )}
+                                                                </td>
+                                                                <td className="text-end">
+                                                                  <span className="price">
+                                                                    $
+                                                                    {item.qtn *
+                                                                      item.buyPrice}
+                                                                  </span>
+                                                                </td>
+                                                              </tr>
+                                                            </>
+                                                          ))}
+                                                        </>
+                                                      );
+                                                    }
+                                                  )}
+                                                </tbody>
+                                              </table>
+                                            </div>
+                                            <div className="total ms-auto">
+                                              <h5>
+                                                Shipping Total:{" "}
+                                                <span>USD $40</span>
+                                              </h5>
+                                              <h5 className="mt-2">
+                                                Invoice Total:{" "}
+                                                <span>
+                                                  USD ${booking.grandPrice}
+                                                </span>
+                                              </h5>
+                                              <p>Paid via Skrill</p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div className="invoice-footer">
+                                          <span>
+                                            THANK YOU FOR YOUR BUSINESS!
+                                          </span>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="modal-footer">
+                                      <button
+                                        type="button"
+                                        className="def-btn"
+                                        onClick={handlePrint}
+                                      >
+                                        Print{" "}
+                                        <i className="fa-regular fa-print" />
+                                      </button>
+                                      <button type="button" className="def-btn">
+                                        Download{" "}
+                                        <i className="fa-regular fa-download" />
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
-                            </td>
-                            <td>
-                              <span className="amount">$256</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span className="invoice-id">INV-012-345</span>
-                            </td>
-                            <td>
-                              <span className="date">Mar 15, 2022</span>
-                            </td>
-                            <td>
-                              <div className="details">
-                                <a
-                                  href="shop-details.html"
-                                  className="product-name"
-                                >
-                                  Revel eCommerce-Multi vendor
-                                </a>
-                                <span className="invoice">
-                                  Invoice:{" "}
-                                  <button
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
-                                  >
-                                    48452022
-                                  </button>
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <span className="amount">$256</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span className="invoice-id">INV-012-345</span>
-                            </td>
-                            <td>
-                              <span className="date">Mar 15, 2022</span>
-                            </td>
-                            <td>
-                              <div className="details">
-                                <a
-                                  href="shop-details.html"
-                                  className="product-name"
-                                >
-                                  Revel eCommerce-Multi vendor
-                                </a>
-                                <span className="invoice">
-                                  Invoice:{" "}
-                                  <button
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
-                                  >
-                                    48452022
-                                  </button>
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <span className="amount">$256</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span className="invoice-id">INV-012-345</span>
-                            </td>
-                            <td>
-                              <span className="date">Mar 15, 2022</span>
-                            </td>
-                            <td>
-                              <div className="details">
-                                <a
-                                  href="shop-details.html"
-                                  className="product-name"
-                                >
-                                  Revel eCommerce-Multi vendor
-                                </a>
-                                <span className="invoice">
-                                  Invoice:{" "}
-                                  <button
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
-                                  >
-                                    48452022
-                                  </button>
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <span className="amount">$256</span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <span className="invoice-id">INV-012-345</span>
-                            </td>
-                            <td>
-                              <span className="date">Mar 15, 2022</span>
-                            </td>
-                            <td>
-                              <div className="details">
-                                <a
-                                  href="shop-details.html"
-                                  className="product-name"
-                                >
-                                  Revel eCommerce-Multi vendor
-                                </a>
-                                <span className="invoice">
-                                  Invoice:{" "}
-                                  <button
-                                    type="button"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#invoiceModal"
-                                  >
-                                    48452022
-                                  </button>
-                                </span>
-                              </div>
-                            </td>
-                            <td>
-                              <span className="amount">$256</span>
-                            </td>
-                          </tr>
+                            </>
+                          ))}
                         </tbody>
                       </table>
                     </div>
@@ -498,7 +574,7 @@ const Account = () => {
                     </div>
                   </div>
                 </div>
-                <div
+                {/* <div
                   className="tab-pane fade"
                   id="v-pills-conversation"
                   role="tabpanel"
@@ -627,7 +703,7 @@ const Account = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div
                   className="tab-pane fade"
                   id="v-pills-wallet"
@@ -843,127 +919,7 @@ const Account = () => {
           </div>
         </div>
         {/*------------------------------- INVOICE MODAL START -------------------------------*/}
-        <div
-          className="invoice-modal modal fade"
-          id="invoiceModal"
-          tabIndex={-1}
-          aria-labelledby="invoiceModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered modal-xl">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h2 className="account-title mb-0" id="invoiceModalLabel">
-                  Invoice
-                </h2>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                />
-              </div>
-              <div className="modal-body">
-                <div className="invoice-wrap">
-                  <div className="invoice-top d-flex justify-content-between align-items-center">
-                    <div className="left">
-                      <div className="logo">
-                        <img src="assets/images/Logo.html" alt="LOGO" />
-                      </div>
-                      <p>Invoice</p>
-                    </div>
-                    <div className="right">
-                      <table>
-                        <tbody>
-                          <tr>
-                            <th>Date:</th>
-                            <td>17 Aug 2022</td>
-                          </tr>
-                          <tr>
-                            <th>Invoice No:</th>
-                            <td>IVIP48452022</td>
-                          </tr>
-                          <tr>
-                            <th>Order No:</th>
-                            <td>166779322</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div className="invoice-body">
-                    <div className="details">
-                      <div className="row">
-                        <div className="col-sm-6">
-                          <h3>Bill to</h3>
-                          <p>
-                            <span>Jetimpex Inc</span>
-                            <span>915 SE 2 Court,</span>
-                            <span>Ft. Lauderdale,</span>
-                            <span>FL 33301</span>
-                            <span>EIN: 42-1774657</span>
-                          </p>
-                        </div>
-                        <div className="col-sm-6">
-                          <h3>Supplier</h3>
-                          <p>
-                            <span>Khorshed Alam</span>
-                            <span>Ruhul amin Complex, Mokimabad,</span>
-                            <span>590573362138</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="items">
-                      <div className="table-responsive">
-                        <table className="table table-borderless">
-                          <thead>
-                            <tr>
-                              <th>Item ID</th>
-                              <th className="text-center">Qty</th>
-                              <th>Description</th>
-                              <th className="text-end">Amount</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>35130092</td>
-                              <td className="text-center">1</td>
-                              <td>
-                                Revel eCommerce-Multi vendor Ecommerce PSD
-                                Template
-                              </td>
-                              <td className="text-end">
-                                <span className="price">$8.00</span>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div className="total ms-auto">
-                        <h5>
-                          Invoice Total: <span>USD $8.00</span>
-                        </h5>
-                        <p>Paid via Skrill</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="invoice-footer">
-                    <span>THANK YOU FOR YOUR BUSINESS!</span>
-                  </div>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="def-btn">
-                  Print <i className="fa-regular fa-print" />
-                </button>
-                <button type="button" className="def-btn">
-                  Download <i className="fa-regular fa-download" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+
         {/*------------------------------- INVOICE MODAL END -------------------------------*/}
       </div>
     </div>

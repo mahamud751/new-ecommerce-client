@@ -23,7 +23,7 @@ const ProductDetails = () => {
 
   const fetchProducts = async () => {
     const response = await axios
-      .get(`http://localhost:5000/api/products`)
+      .get(`https://korbojoy-server.onrender.com/api/products`)
       .catch((err) => {});
     dispatch(setProducts(response.data));
   };
