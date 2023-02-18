@@ -338,7 +338,6 @@ const Account = () => {
                         </thead>
                         <tbody>
                           {bookings.map((booking) => (
-<<<<<<< HEAD
                             <>
                               <tr>
                                 <td>
@@ -553,43 +552,6 @@ const Account = () => {
                                 </div>
                               </div>
                             </>
-=======
-                            <tr>
-                              <td>
-                                <span className="invoice-id">INV-012-345</span>
-                              </td>
-                              <td>
-                                <span className="date">
-                                  {booking.createdAt.slice(0, 10)}
-                                </span>
-                              </td>
-                              <td>
-                                <div className="details">
-                                  <a
-                                    href="shop-details.html"
-                                    className="product-name"
-                                  >
-                                    Revel eCommerce-Multi vendor
-                                  </a>
-                                  <span className="invoice">
-                                    Invoice:{" "}
-                                    <button
-                                      type="button"
-                                      data-bs-toggle="modal"
-                                      data-bs-target="#invoiceModal"
-                                    >
-                                      48452022
-                                    </button>
-                                  </span>
-                                </div>
-                              </td>
-                              <td>
-                                <span className="amount">
-                                  ${booking.grandPrice}
-                                </span>
-                              </td>
-                            </tr>
->>>>>>> 12c5b42db715542480c0a1e4e2bd06cfb71617d7
                           ))}
                         </tbody>
                       </table>
