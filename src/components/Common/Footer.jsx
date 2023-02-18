@@ -158,7 +158,7 @@ const Footer = () => {
                   <h3 className="footer-title">Subscribe</h3>
                   <p>
                     Lorem ipsum dolor si consectetur adipisicing elit, sed
-                    eiusmotempor incididunt ut labore et
+                    eiusmotempor incididunt ut labore
                   </p>
                   <form>
                     <input type="email" name="email" placeholder="Your Email" />
