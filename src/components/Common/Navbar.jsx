@@ -225,7 +225,10 @@ const Navbar = () => {
                 <div className="logo">
                   <Link to={"/"}>
                     <a>
-                      <img src="assets/images/logo1.png" alt="logo" />
+                      <img
+                        src="https://i.ibb.co/P1H70ST/logo1.png"
+                        alt="logo"
+                      />
                     </a>
                   </Link>
                 </div>
@@ -462,20 +465,6 @@ const Navbar = () => {
               ""
             )}
 
-            {user ? (
-              <li className="nav-item">
-                <Link to={"/login"}>
-                  <a className="nav-link">Login / Register</a>
-                </Link>
-              </li>
-            ) : (
-              <li className="nav-item">
-                <a onClick={handleLogOut} className="nav-link">
-                  Logout
-                </a>
-              </li>
-            )}
-
             <li className="nav-item">
               <Link to={"/about"}>
                 <a className="nav-link">About</a>
@@ -491,6 +480,19 @@ const Navbar = () => {
                 <a className="nav-link">Contact</a>
               </Link>
             </li>
+            {user ? (
+              <li className="nav-item">
+                <a onClick={handleLogOut} className="nav-link">
+                  Logout
+                </a>
+              </li>
+            ) : (
+              <li className="nav-item">
+                <Link to={"/login"}>
+                  <a className="nav-link">Login / Register</a>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
         <ul className="mobile-nav">
@@ -517,13 +519,23 @@ const Navbar = () => {
               </a>
             </Link>
           </li>
-          <li>
-            <Link to={"/account"}>
-              <a className="m-nav-link">
-                <i className="fa-light fa-user-large" />
-              </a>
-            </Link>
-          </li>
+          {user ? (
+            <li>
+              <Link to={"/account"}>
+                <a className="m-nav-link">
+                  <i className="fa-light fa-user-large" />
+                </a>
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link to={"/login"}>
+                <a className="m-nav-link">
+                  <i className="fa-light fa-user-large" />
+                </a>
+              </Link>
+            </li>
+          )}
           <li>
             <a role="button" data-target="m-main-menu" className="m-nav-link">
               <i className="fa-light fa-ellipsis-stroke" />

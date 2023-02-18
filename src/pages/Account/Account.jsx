@@ -48,8 +48,6 @@ const Account = () => {
     e.preventDefault();
     window.print();
   };
-  console.log(users);
-  console.log(bookings);
   return (
     <div>
       <div className="account py-120">

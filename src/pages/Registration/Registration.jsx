@@ -110,7 +110,7 @@ const Registration = () => {
                 <div className="registration_img">
                   <Link to={"/"}>
                     <img
-                      src="/assets/images/Logo1.png"
+                      src="https://i.ibb.co/P1H70ST/logo1.png"
                       alt="Logo"
                       className="registration_img_main"
                     />
