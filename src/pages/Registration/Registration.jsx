@@ -54,7 +54,7 @@ const Registration = () => {
   const handleGoogleSignIn = (name, email, password) => {
     signInWithGoogle();
     const user = { name, email, password };
-    fetch("http://localhost:5000/api/user", {
+    fetch("https://korbojoy-server.onrender.com/api/user", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -79,7 +79,7 @@ const Registration = () => {
   };
   const saveUser = (name, email, password) => {
     const user = { name, email, password };
-    fetch("http://localhost:5000/api/user", {
+    fetch("https://korbojoy-server.onrender.com/api/user", {
       method: "POST",
       headers: {
         "content-type": "application/json",
