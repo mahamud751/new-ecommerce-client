@@ -17,7 +17,7 @@ const Footer = () => {
               <div className="custom-col-2">
                 <div className="footer-about">
                   <div className="footer-logo">
-                    <img src="/assets/images/Logo1.png" alt="Logo" />
+                    <img src="https://i.ibb.co/P1H70ST/logo1.png" alt="Logo" />
                   </div>
                   <p>Got Question? Call us 24/7</p>
                   <ul>
