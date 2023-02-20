@@ -84,7 +84,7 @@ const Cart = () => {
       grandPrice,
     };
     console.log("orders", orders);
-    fetch("https://korbojoy-server.onrender.com/api/order", {
+    fetch("https://zealous-ruby-starfish.cyclic.app/api/order", {
       method: "POST",
       headers: {
         "content-type": "application/json",

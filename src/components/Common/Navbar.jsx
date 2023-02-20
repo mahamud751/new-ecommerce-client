@@ -17,7 +17,7 @@ const Navbar = () => {
   const getCategory = async () => {
     try {
       const response = await axios.get(
-        "https://korbojoy-server.onrender.com/api/category"
+        "https://zealous-ruby-starfish.cyclic.app/api/category"
       );
       setCategory(response.data);
     } catch (error) {

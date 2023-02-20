@@ -23,7 +23,7 @@ const ProductDetails = () => {
 
   const fetchProducts = async () => {
     const response = await axios
-      .get(`https://korbojoy-server.onrender.com/api/products`)
+      .get(`https://zealous-ruby-starfish.cyclic.app/api/products`)
       .catch((err) => {});
     dispatch(setProducts(response.data));
   };

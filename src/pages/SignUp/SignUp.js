@@ -45,7 +45,7 @@ const SignUp = () => {
 
   const saveUser = (name, email, password) => {
     const user = { name, email, password };
-    fetch("https://korbojoy-server.onrender.com/api/user", {
+    fetch("https://zealous-ruby-starfish.cyclic.app/api/user", {
       method: "POST",
       headers: {
         "content-type": "application/json",

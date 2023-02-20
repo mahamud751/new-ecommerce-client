@@ -19,7 +19,7 @@ const Category = () => {
   const dispatch = useDispatch();
   const fetchProducts = async () => {
     const response = await axios
-      .get(`https://korbojoy-server.onrender.com/api/category/${id}`)
+      .get(`https://zealous-ruby-starfish.cyclic.app/api/category/${id}`)
       .catch((err) => {});
     dispatch(setCategory(response.data.products));
   };

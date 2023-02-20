@@ -4,7 +4,9 @@ const useToken = (email) => {
   const [token, setToken] = useState("");
   useEffect(() => {
     if (email) {
-      fetch(`https://korbojoy-server.onrender.com/api/user/jwt?email=${email}`)
+      fetch(
+        `https://zealous-ruby-starfish.cyclic.app/api/user/jwt?email=${email}`
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.accessToken) {
