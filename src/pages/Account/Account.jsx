@@ -10,7 +10,7 @@ const Account = () => {
   const [bookings, setBooking] = useState([]);
 
   useEffect(() => {
-    const url = `https://zealous-ruby-starfish.cyclic.app/api/order/s/?email=${emailId}`;
+    const url = `https://korbojoy-server.onrender.com/api/order/s/?email=${emailId}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => setBooking(data));
@@ -39,7 +39,7 @@ const Account = () => {
     };
     try {
       await axios.put(
-        `https://zealous-ruby-starfish.cyclic.app/api/user/${emailId}`,
+        `https://korbojoy-server.onrender.com/api/user/${emailId}`,
         newPost
       );
     } catch (error) {}
